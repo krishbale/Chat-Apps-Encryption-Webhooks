@@ -11,4 +11,7 @@ export class CatsService {
     findAll():Cat[] {
         return this.cats;
     }
+    findOne():Cat[]{
+        return this.cats.filter(id => id);
+    }
 }
