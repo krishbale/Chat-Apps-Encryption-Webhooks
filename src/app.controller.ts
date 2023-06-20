@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -23,8 +24,12 @@ export class AppController {
   PostUser(@Req() req: Request) {
     return this.appService.create(req);
   }
-  @Patch('/:userID')
-  UpdateUser(@Req() req: Request, @Param() param: { userID: number }) {
-    return this.appService.updateuser(req, param);
-  }
+  // @Patch('/:userID')
+  // UpdateUser(@Req() req: Request, @Param() param: { userID: number }) {
+  //   return this.appService.updateuser(req, param);
+  // }
+  // @Delete('/:userID')
+  // DeleteUser(@Param() param: { userID: number }) {
+  //   return this.appService.deleteuser(param);
+  // }
 }

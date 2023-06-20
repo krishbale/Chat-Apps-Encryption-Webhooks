@@ -11,4 +11,7 @@ export class AppService {
   updateuser(@Req() req: Request, @Param() param: { userID: number }) {
     return { body: req.body, param };
   }
+  deleteuser(@Param() param: { userID: number }) {
+    return { Param, message: 'deletedsuccessfull' };
+  }
 }
