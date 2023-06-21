@@ -14,6 +14,7 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entity/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { AuthController } from './auth/auth.controller';
+import { ProfileModule } from './profile/profile.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -32,6 +33,7 @@ import { AuthController } from './auth/auth.controller';
     ConfigModule.forRoot({
       envFilePath: '.development.env',}
     ),
+    ProfileModule,
     
   ],
   controllers: [AppController],
