@@ -1,9 +1,10 @@
 import {  Injectable,   } from '@nestjs/common';
 import { UpdateUserDto, } from './dto/updateuser.dto';
 import { Repository } from 'typeorm';
-import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
+import { InjectRepository,  } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { CreateUserDto } from './dto/createuser.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -17,9 +18,14 @@ export class UserService {
   }
 
   //creating new user database
-  create(creatuserdto: CreateUserDto) {
+
+  
+  async create(creatuserdto: CreateUserDto) {
+    const salt = await bcrypt.genSalt();
+    const password = bcrypt.hash(creatuserdto.password,salt);
+    creatuserdto.password =  await password;
     
-    return this.userRepository.save(creatuserdto);
+    return await this.userRepository.save(creatuserdto);
   }
 ///updating existing database
   UpdateUser(
