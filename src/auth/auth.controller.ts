@@ -7,7 +7,7 @@ export class AuthController {
     constructor(private authService: AuthService) { }
     @Post('/login')
     async login(@Body() logindto: any) {
-        return this.authService.signIn(logindto.email,logindto.password);
+        return this.authService.validateUser(logindto.email,logindto.password)
         
     }
 }
