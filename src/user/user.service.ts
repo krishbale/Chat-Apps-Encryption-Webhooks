@@ -22,9 +22,9 @@ export class UserService {
 
   async create(creatuserdto: CreateUserDto) {
    //bcrypting password
-    const salt = await bcrypt.genSalt();
-    creatuserdto.password = await bcrypt.hash(creatuserdto.password, salt);
-    
+    // const salt = await bcrypt.genSalt();
+    // creatuserdto.password = await bcrypt.hash(creatuserdto.password, salt);
+
     
     return await this.userRepository.save(creatuserdto);
   }
