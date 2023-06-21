@@ -1,5 +1,5 @@
 import { Body, Injectable, Param, ParseIntPipe } from '@nestjs/common';
-import { UpdateUserDto,} from './dto/updateuser.dto';
+import { UpdateUserDto, } from './dto/updateuser.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
@@ -10,29 +10,34 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   findall(): Promise<User[]> {
     return this.userRepository.find();
   }
-  create( creatuserdto: CreateUserDto) {
+  create(creatuserdto: CreateUserDto) {
     return this.userRepository.save(creatuserdto);
   }
 
   UpdateUser(
     updateUserDto: UpdateUserDto,
-   userID: string ,
+    userID: string,
   ) {
-    return { body:updateUserDto,userID}
+    return this.userRepository.update(userID, updateUserDto);
   }
   getUserByID(
-    userID:string
-  ){
-    return this.userRepository.findOne({where: {id:userID}});
+    userID: string
+  ) {
+    return this.userRepository.findOne({ where: { id: userID } });
   }
   deleteUser(
-    userID:string
-  ){
+    userID: string
+  ) {
     return this.userRepository.delete(userID)
+  }
+  findbyEmail(
+    email:string
+  ){
+    return this.userRepository.findOne({where:{email}});
   }
 }

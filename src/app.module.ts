@@ -4,6 +4,7 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -11,10 +12,12 @@ import { LoggerMiddleware } from './logger.middleware';
 import { CatsModule } from './cats/cats.module';
 import { UserModule } from './user/user.module';
 import { User } from './user/entity/user.entity';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type:'postgres',
       host: '127.0.0.1',
       port: 5432,
       username: 'postgres',
@@ -24,7 +27,12 @@ import { User } from './user/entity/user.entity';
       synchronize: true,
     }),
     CatsModule,
-    UserModule
+    UserModule,
+    AuthModule,
+    ConfigModule.forRoot({
+      envFilePath: '.development.env',}
+    ),
+    
   ],
   controllers: [AppController],
   providers: [AppService],
