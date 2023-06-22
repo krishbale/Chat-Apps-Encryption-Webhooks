@@ -10,18 +10,19 @@ import { OTPType } from 'src/otp/enitity/otp.enum';
 import { sendmail } from 'src/utils/mailsender/sendmail';
 import { verifydto } from 'src/otp/dto/veifyotp.dto';
 import { validatedto } from 'src/otp/dto/veifyotp.dto';
-import { string } from 'joi';
 
-
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
 
 
+
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-    private otpservice: OtpService) 
+    private otpservice: OtpService
+    ,private jwtService: JwtService) 
     { }
   
 
@@ -51,7 +52,27 @@ export class UserService {
     }
   }
 
+  async login(creatuserdto: CreateUserDto) {
+  
+  const user = await this.userRepository.findOne({
+    where: { email: creatuserdto.email.toLowerCase() },
+    select: { id: true, password: true, isverified: true },
+  });
+  
+  if (!user) throw new BadRequestException({ success: false, verified:null, message: 'User not found.' });
+  const isPasswordValid = await bcrypt.compare(creatuserdto.password, user.password);
+  if (!isPasswordValid) throw new BadRequestException({ success: false, verified:null, message: 'Invalid password.' });
+    
+  const isverified = user.isverified;
+  if (!isverified) throw new BadRequestException({ success: false, verified:false, message: 'User not verified.' });
 
+
+const token = await this.jwtService.signAsync({ id: user.id });
+return { success: true, verified:true, message: 'User logged in successfully.', token };
+
+
+
+}
 //update user by id
   UpdateUser(
     updateUserDto: UpdateUserDto,
@@ -61,7 +82,7 @@ export class UserService {
   }
 
   async requestotp(verifydto: verifydto) {
-    try {
+
       const waitTime = 1000 * 60 * 1; // 1 minutes
 
       //checking if user exists
@@ -89,9 +110,7 @@ export class UserService {
       sendmail(user.email, text);
       //returning response
       return { success: true, message: 'OTP sent.', text };
-    } catch (e) {
-      console.log(e)
-    }
+  
 
 
 
@@ -99,7 +118,7 @@ export class UserService {
 
   }
   async validateotp(validatedto: validatedto) {
-    try {
+  
       //checking if user exists
       const user = await this.userRepository.findOne({ where: { email: validatedto.email } });
       //if user not found
@@ -109,16 +128,14 @@ export class UserService {
       //checking if otp is valid
       const isOTPValid = await this.otpservice.validateOTP(user.id, validatedto.otp, OTPType.EMAIL_VERIFICATION);
       //if otp is not valid
-      if (!isOTPValid) throw new BadRequestException({ success: false, message: 'Invalid OTP.' });
+      if (!isOTPValid) return new BadRequestException({ success: false, message: 'Invalid OTP.' });
       //validating user
       await this.userRepository.update(user.id, { isverified: true });
       //deleting otp from database
       await this.otpservice.deleteOTP(user.id, validatedto.otp, OTPType.EMAIL_VERIFICATION)
       //returning response 
       return { success: true, message: 'User verified.' };
-    } catch (e) {
-      console.log(e);
-    }
+  
   }
 
 

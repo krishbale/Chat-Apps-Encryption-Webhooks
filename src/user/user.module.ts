@@ -5,15 +5,23 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { OtpModule } from 'src/otp/otp.module';
 import { OtpService } from 'src/otp/otp.service';
+import { JwtModule } from '@nestjs/jwt';
+import { JWTSECRET } from 'src/constant';
+import { JwtStrategy } from 'src/auth/strategy/jwt.strategy';
 
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]),OtpModule],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    OtpModule,JwtModule.register({
+      secret: JWTSECRET,
+      signOptions: { expiresIn: '60s' }
+    })
+  ],
   
   controllers: [UserController],
-  providers: [UserService,OtpService],
- 
+  providers: [UserService,OtpService,JwtStrategy],
   exports: [UserService]
 })
 export class UserModule {}

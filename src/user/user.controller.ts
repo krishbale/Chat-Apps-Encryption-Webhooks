@@ -14,11 +14,17 @@ export class UserController {
  
  
 //create user
-  @Post('/create')
+  @Post('/register')
   create(@Body() createUserDto: CreateUserDto) {
 
     return this.userService.create(createUserDto);
   }
+//login user
+@Post('/login')
+login(@Body() createUserDto: CreateUserDto) {
+  return this.userService.login(createUserDto);
+}
+
   //update user
   @Patch('/update/:userID')
   update(
