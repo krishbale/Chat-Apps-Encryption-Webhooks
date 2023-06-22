@@ -8,66 +8,53 @@ import { validatedto } from 'src/otp/dto/veifyotp.dto';
 export class UserController {
 
   constructor(private userService: UserService,
-    ) {}
-  
+  ) { }
 
-  @Get('/byname')
-  getbyname(){
-    return this.userService.findname();
-  }
 
-  @Get('/byorder')
-  getbyorder(){
-    return this.userService.sortbyorder();
-  }
  
-  
-
-
-  @Get()
-  findAll() {
-    return this.userService.findall();
-  }
-
+ 
+//create user
   @Post('/create')
   create(@Body() createUserDto: CreateUserDto) {
-   
+
     return this.userService.create(createUserDto);
   }
-  @Post('/requestotp')
-  requestotp(@Body() verifydto:verifydto  ){
-    return this.userService.requestotp(verifydto)
+  //update user
+  @Patch('/update/:userID')
+  update(
+    @Body() updateUserDto: UpdateUserDto,
+    @Param('userID', ParseUUIDPipe) userID: string,
+  ) {
+    return this.userService.UpdateUser(updateUserDto, userID);
   }
 
+ 
+
+//get user by id
+  @Get('/:userID')
+  show(
+    @Param('userID', ParseUUIDPipe) userID: string,
+  ) {
+    return this.userService.getUserByID(userID);
+  }
+
+//delete user by id
+  @Delete('/:userID')
+  delete(
+    @Param('userID', ParseUUIDPipe) userID: string,
+  ) {
+    return this.userService.deleteUser(userID);
+  }
+//request otp by email
+  @Post('/requestotp')
+  requestotp(@Body() verifydto: verifydto) {
+    return this.userService.requestotp(verifydto)
+  }
+//validate otp by email and otp code from email
   @Post('/validateotp')
-  validateotp(@Body() validatedto:validatedto){
+  validateotp(@Body() validatedto: validatedto) {
     return this.userService.validateotp(validatedto)
   }
 
 
-  @Patch('/:userID')
-  update(
-    @Body() updateUserDto: UpdateUserDto,
-    @Param('userID',ParseUUIDPipe) userID: string ,
-  ) {
-    return this.userService.UpdateUser(updateUserDto,userID);
-  }
-
-
-  @Get('/:userID')
-  show(
-    @Param('userID',ParseUUIDPipe) userID:string,
-  ){
-    return this.userService.getUserByID(userID);
-  }
-
-
-  @Delete('/:userID')
-  delete(
-  @Param('userID',ParseUUIDPipe) userID:string,
-  ){
-    return this.userService.deleteUser(userID);
-  }
-
- 
 }

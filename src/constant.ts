@@ -20,20 +20,14 @@ export const DATABASE:{
 
 
 
+export const JWTSECRET: string = process.env.JWT_SECRET!;
 
 
-export const SMTP: {
-    SMTP_FROM_NAME: string;
-    SMTP_USER: string;
-    SMTP_PASSWORD: string;
-    SMTP_HOST: string;
-    SMTP_PORT: number;
-    SMTP_SECURITY: string;
-  } = {
-    SMTP_FROM_NAME: process.env.SMTP_USER!,
-    SMTP_USER: process.env.SMTP_USER!,
-    SMTP_PASSWORD:process.env.SMTP_PASSWORD!,
-    SMTP_HOST: process.env.SMTP_HOST!,
-    SMTP_PORT: parseInt(process.env.SMTP_PORT!),
-    SMTP_SECURITY: process.env.SMTP_SECURITY!,
-  };
+export const SMTP = {
+host: 'smtp.ethereal.email',
+port: 465,
+secure: false,
+user: 'kaela.kiehn98@ethereal.email',
+pass: 'tFjBsv5g2YdjVPPDvp',
+Sender:'kaela.kiehn98@ethereal.email',
+}

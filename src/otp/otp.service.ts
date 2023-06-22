@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { generateOTP } from 'src/otpgenerator/generatenewotp';
+import { generateOTP } from '../utils/otpgenerator/generatenewotp';
 import { DataSource } from 'typeorm';
 import { OTPType } from './enitity/otp.enum';
 import { OTP } from './enitity/otp.entity';
