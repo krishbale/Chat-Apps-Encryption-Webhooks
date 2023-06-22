@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "typeorm": "./node_modules/.bin/typeorm",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -17,7 +18,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:show": "ts-node ./node_modules/.bin/typeorm migration:show -d ./src/data-source.ts",
+    "migration:create": "ts-node ./node_modules/.bin/typeorm migration:create ./src/migrations/CreateNameTable",
+    "migration:generate": "yarn ts-node ./node_modules/.bin/typeorm migration:generate ./src/migrations/CreateNameTable -d ./src/data-source.ts",
+    "migration:run": "yarn ts-node ./node_modules/.bin/typeorm migration:run -d ./src/data-source.ts",
+    "migration:revert": "yarn ts-node ./node_modules/.bin/typeorm migration:revert -d ./src/data-source.ts",
+    "migration:generate:win": "yarn typeorm-ts-node-commonjs migration:generate ./src/migrations/CreateNameTable -d ./src/data-source.ts",
+    "migration:run:win": "yarn typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -27,11 +35,13 @@
     "@nestjs/passport": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.0",
+    "@types/nodemailer": "^6.4.8",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "joi": "^17.9.2",
     "mysql2": "^3.4.0",
+    "nodemailer": "^6.9.3",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",

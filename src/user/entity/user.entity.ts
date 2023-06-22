@@ -1,5 +1,7 @@
 import * as bcrypt from 'bcrypt';
-import { BeforeUpdate, BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import {OTP } from '../../otp/enitity/otp.entity';
+import {   Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
 
 
@@ -16,12 +18,7 @@ export class User {
 
   @Column('varchar', { length: 128 })
   password: string;
-  @BeforeInsert()
-  @BeforeUpdate()
-  async hashPassword() {
-    const salt = await bcrypt.genSalt();
-    if(this.password)  this.password = await bcrypt.hash(this.password, salt);
-  }
+
 
 
   @CreateDateColumn()
@@ -29,4 +26,12 @@ export class User {
 
   @UpdateDateColumn()
   updatedat: Date;
+
+  @Column( 'boolean',{ default:false})
+  isverified:boolean
+
+  @OneToMany(() => OTP, (otp) => otp.user)
+  otps: OTP[];
+   
+ 
 }

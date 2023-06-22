@@ -9,7 +9,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsEmail()
-  @Length(8,24)
+  @Length(8,50)
   email: string;
 
 

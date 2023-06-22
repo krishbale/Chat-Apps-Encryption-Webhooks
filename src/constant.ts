@@ -17,3 +17,23 @@ export const DATABASE:{
     PASSWORD: process.env.PASSWORD,
     NAME: process.env.NAME,
 }
+
+
+
+
+
+export const SMTP: {
+    SMTP_FROM_NAME: string;
+    SMTP_USER: string;
+    SMTP_PASSWORD: string;
+    SMTP_HOST: string;
+    SMTP_PORT: number;
+    SMTP_SECURITY: string;
+  } = {
+    SMTP_FROM_NAME: process.env.SMTP_USER!,
+    SMTP_USER: process.env.SMTP_USER!,
+    SMTP_PASSWORD:process.env.SMTP_PASSWORD!,
+    SMTP_HOST: process.env.SMTP_HOST!,
+    SMTP_PORT: parseInt(process.env.SMTP_PORT!),
+    SMTP_SECURITY: process.env.SMTP_SECURITY!,
+  };

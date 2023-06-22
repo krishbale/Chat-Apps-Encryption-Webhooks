@@ -1,6 +1,5 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { DATABASE } from "src/constant";
-import { User } from "./user/entity/user.entity";
+import { DATABASE } from './constant';
 
 export const ormConfig: TypeOrmModuleOptions = {
     type: 'postgres',
@@ -10,7 +9,9 @@ export const ormConfig: TypeOrmModuleOptions = {
     password: DATABASE.PASSWORD,
     database: DATABASE.NAME,
     synchronize: true,
-   entities:[User],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+    migrationsTableName: "custom_migration_table",
 
 } as TypeOrmModuleOptions;  
 
