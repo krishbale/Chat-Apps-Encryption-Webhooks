@@ -2,7 +2,8 @@ import { Body, Controller, Get, Post, Param, Patch, ParseUUIDPipe, Delete } from
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/updateuser.dto';
 import { CreateUserDto } from './dto/createuser.dto';
-import { verifydto } from 'src/otp/dto/requestverification.dto';
+import { verifydto } from 'src/otp/dto/veifyotp.dto';
+import { validatedto } from 'src/otp/dto/veifyotp.dto';
 @Controller('/user')
 export class UserController {
 
@@ -33,10 +34,16 @@ export class UserController {
    
     return this.userService.create(createUserDto);
   }
-  @Post('/verify')
-  verifyotp(@Body() verifydto:verifydto  ){
-    return this.userService.requestotpverify(verifydto)
+  @Post('/requestotp')
+  requestotp(@Body() verifydto:verifydto  ){
+    return this.userService.requestotp(verifydto)
   }
+
+  @Post('/validateotp')
+  validateotp(@Body() validatedto:validatedto){
+    return this.userService.validateotp(validatedto)
+  }
+
 
   @Patch('/:userID')
   update(
