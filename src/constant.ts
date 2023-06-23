@@ -34,7 +34,7 @@ export const SMTP:{
 } = {
 host: process.env.SMTPhost,
 port: parseInt(process.env.SMTPport),
-secure:  process.env.SMTPsecure === 'false' ? false : true,
+secure:  process.env.SMTPsecure === 'true' ? true : false,
 user: process.env.SMTPuser,
 pass: process.env.SMTPpass,
 Sender:process.env.Sender,
