@@ -10,8 +10,10 @@ import { OTPType } from 'src/otp/enums/otp.enum';
 import { sendmail } from 'src/utils/mailsender/sendmail';
 import { resetpasswordto, verifydto } from 'src/otp/dto/veifyotp.dto';
 import { validatedto } from 'src/otp/dto/veifyotp.dto';
-
+import { loginuserDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
+import { IJWTPayload, TokenType } from 'src/auth/interfaces/auth.interface';
+import { JWTSECRET } from 'src/constant';
 
 @Injectable()
 export class UserService {
@@ -30,13 +32,13 @@ export class UserService {
 
 
   //creating new user and sending otp to email
-  async create(creatuserdto: CreateUserDto) {
-    const isuser = await this.userRepository.findOne({ where: { email: creatuserdto.email } });
+  async create(loginuserDto: loginuserDto) {
+    const isuser = await this.userRepository.findOne({ where: { email: loginuserDto.email } });
     if (isuser) throw new BadRequestException({ success: false, message: 'Email already exists.' });
     try {
       const salt = await bcrypt.genSalt();
-      creatuserdto.password = await bcrypt.hash(creatuserdto.password, salt);
-      const user = await this.userRepository.save(creatuserdto);
+      loginuserDto.password = await bcrypt.hash(loginuserDto.password, salt);
+      const user = await this.userRepository.save(loginuserDto);
       const code = await this.otpservice.createOTP(user.id, OTPType.EMAIL_VERIFICATION)
       const text = `${code.code} is your verification code`;
       sendmail(user.email, text);
@@ -45,24 +47,34 @@ export class UserService {
       console.log(e)
     }
   }
+  async generateTokens(user_id: string): Promise<{ access_token: string; }> {
+    
+    const access_token_payload: IJWTPayload = { sub: user_id, type: TokenType.ACCESS_TOKEN };
+   
 
-  async login(creatuserdto: CreateUserDto) {
+    const access_token = this.jwtService.sign(access_token_payload, { expiresIn: '15m', secret: JWTSECRET });
+   
+
+    return { access_token };
+  }
+
+  async login(loginuserDto: loginuserDto) {
   
   const user = await this.userRepository.findOne({
-    where: { email: creatuserdto.email.toLowerCase() },
+    where: { email: loginuserDto.email.toLowerCase() },
     select: { id: true, password: true, isverified: true },
   });
   
   if (!user) throw new BadRequestException({ success: false, verified:null, message: 'User not found.' });
-  const isPasswordValid = await bcrypt.compare(creatuserdto.password, user.password);
+  const isPasswordValid = await bcrypt.compare(loginuserDto.password, user.password);
   if (!isPasswordValid) throw new BadRequestException({ success: false, verified:null, message: 'Invalid password.' });
     
   const isverified = user.isverified;
   if (!isverified) throw new BadRequestException({ success: false, verified:false, message: 'User not verified.' });
 
 
-const token = await this.jwtService.signAsync({ id: user.id });
-return { success: true, verified:true, message: 'User logged in successfully.', token };
+  const { access_token  } = await this.generateTokens(user.id);
+return { success: true, verified:true, message: 'User logged in successfully.', access_token };
 
 
 
