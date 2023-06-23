@@ -38,3 +38,18 @@ SSL version  error while sending  otp mail to users
 ……………….
 Status GIthub 
 
+Friday 23 June 2023  10:30am : 22:29 PM
+
+Completed Task:
+1.Updated SMTP mail  service credentials provided by Pawan sir..
+2.Added "forget password" functionality with verified email. 
+3.Added "reset password" functionality with OTP provided from verified user email.
+4.Updated JWT functionality  ON PROTECTED routes with BearerAccess Token .
+5.Added "change password" functionality on protected routes with using old password and userid
+6.Explore the socket io documentation and others resources
+ and tried creating chat applications backend ---------status github.....
+7.Peek a look at swagger documentations.
+
+Blockers ---- SOcket IO ----Couldnot able to complete Private chats..
+###############
+Status Github.....
