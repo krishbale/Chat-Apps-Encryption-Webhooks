@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-
+import { JWTAUTHGuard } from 'src/@guards/jwt.guards';
 @Controller('profile')
 
 export class ProfileController {

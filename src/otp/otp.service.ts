@@ -24,6 +24,9 @@ export class OtpService {
       .findOne({ where: { user_id, otp_type }, order: { created_at: 'DESC' } });
   }
 
+  
+
+
   async validateOTP(user_id: string, code: string, otp_type: OTPType) {
     const otp = await this.dataSource.getRepository(OTP).findOne({ where: { user_id, code, otp_type } });
     if (!otp) throw new BadRequestException('Invalid OTP.');

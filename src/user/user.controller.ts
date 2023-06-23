@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Param, Patch, ParseUUIDPipe, Delete } from
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/updateuser.dto';
 import { CreateUserDto } from './dto/createuser.dto';
-import { verifydto } from 'src/otp/dto/veifyotp.dto';
+import { resetpasswordto, verifydto } from 'src/otp/dto/veifyotp.dto';
 import { validatedto } from 'src/otp/dto/veifyotp.dto';
 @Controller('/user')
 export class UserController {
@@ -60,6 +60,17 @@ login(@Body() createUserDto: CreateUserDto) {
   @Post('/validateotp')
   validateotp(@Body() validatedto: validatedto) {
     return this.userService.validateotp(validatedto)
+  }
+  //forget password by email
+  @Post('/forgetpassword')
+  forgetpassword(@Body() verifydto: verifydto) {
+    return this.userService.forgetpassword(verifydto)
+  }
+
+  //reset password by email and otp code from email
+  @Post('/resetpassword')
+  resetpassword(@Body() resetpasswordto: resetpasswordto) { 
+    return this.userService.resetpassword(resetpasswordto)
   }
 
 

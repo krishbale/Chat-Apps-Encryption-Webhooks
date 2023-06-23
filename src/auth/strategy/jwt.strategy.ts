@@ -1,10 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { JWTSECRET } from '../../constant'
+import { DataSource } from 'typeorm';
+import { User } from 'src/user/entity/user.entity';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
+  constructor( private readonly dataSource: DataSource) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -13,7 +15,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
+    // if (payload.type !== TokenType.ACCESS_TOKEN) throw new UnauthorizedException();
+    console.log(payload)
+    const user = await this.dataSource.getRepository(User).findOne({ where: { id: payload.sub, isverified: true } });
 
-    return { id: payload.sub, email: payload.email };
+    if (!user) throw new UnauthorizedException();
+    console.log(user)
+    return user;
+   
   }
 }

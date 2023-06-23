@@ -10,3 +10,11 @@ export class validatedto extends verifydto {
   @IsString()
   otp: string;
 }
+export class resetpasswordto extends validatedto {
+
+
+  @IsNotEmpty()
+  @IsString()
+  @Length(8,50)
+  newpassword: string;
+}
