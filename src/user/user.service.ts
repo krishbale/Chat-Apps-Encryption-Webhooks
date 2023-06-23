@@ -6,7 +6,7 @@ import { User } from './entity/user.entity';
 import { CreateUserDto } from './dto/createuser.dto';
 import * as bcrypt from 'bcrypt';
 import { OtpService } from 'src/otp/otp.service';
-import { OTPType } from 'src/otp/enitity/otp.enum';
+import { OTPType } from 'src/otp/enums/otp.enum';
 import { sendmail } from 'src/utils/mailsender/sendmail';
 import { verifydto } from 'src/otp/dto/veifyotp.dto';
 import { validatedto } from 'src/otp/dto/veifyotp.dto';

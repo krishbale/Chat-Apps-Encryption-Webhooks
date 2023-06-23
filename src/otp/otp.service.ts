@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { generateOTP } from '../utils/otpgenerator/generatenewotp';
 import { DataSource } from 'typeorm';
-import { OTPType } from './enitity/otp.enum';
+import { OTPType } from './enums/otp.enum';
 import { OTP } from './enitity/otp.entity';
 
 @Injectable()
 export class OtpService {
-    constructor(private readonly dataSource: DataSource) {}
+  constructor(private readonly dataSource: DataSource) { }
 
 
   async createOTP(user_id: string, otp_type: OTPType) {

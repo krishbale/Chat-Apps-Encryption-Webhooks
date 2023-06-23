@@ -23,11 +23,21 @@ export const DATABASE:{
 export const JWTSECRET: string = process.env.JWT_SECRET!;
 
 
-export const SMTP = {
-host: 'smtp.ethereal.email',
-port: 465,
-secure: false,
-user: 'kaela.kiehn98@ethereal.email',
-pass: 'tFjBsv5g2YdjVPPDvp',
-Sender:'kaela.kiehn98@ethereal.email',
+export const SMTP:{
+    host:string,
+    port:number,
+    secure:boolean,
+    user:string,
+    pass:string,
+    Sender:string,
+ 
+} = {
+host: process.env.SMTPhost,
+port: parseInt(process.env.SMTPport),
+secure:  process.env.SMTPsecure === 'false' ? false : true,
+user: process.env.SMTPuser,
+pass: process.env.SMTPpass,
+Sender:process.env.Sender,
+
+
 }

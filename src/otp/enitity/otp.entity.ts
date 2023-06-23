@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { OTPType } from './otp.enum'
+import { OTPType } from '../enums/otp.enum'
 import { User } from '../../user/entity/user.entity';
 
 @Entity({ name: 'otp' })
