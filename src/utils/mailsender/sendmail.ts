@@ -1,29 +1,23 @@
-import { SMTP } from "src/constant";
-const nodemailer = require("nodemailer");
+import { SMTP } from 'src/constant';
+import nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   host: SMTP.host,
   port: SMTP.port,
   secure: SMTP.secure,
   auth: {
-
     user: SMTP.user,
-    pass: SMTP.pass
+    pass: SMTP.pass,
   },
-
 });
 
-
-export async function sendmail(to: string, text: string,) {
-
+export async function sendmail(to: string, text: string) {
   const info = await transporter.sendMail({
     from: SMTP.Sender, // sender address
-    to: to,         // user email address that we want to send OTP
-    subject: "Email verification",
-    text: text, 
+    to: to, // user email address that we want to send OTP
+    subject: 'Email verification',
+    text: text,
     html: `<b>Hello Please verify your email ${text}</b>`,
   });
 
-  console.log("Message sent: %s", info.messageId);
-
+  console.log('Message sent: %s', info.messageId);
 }
-
