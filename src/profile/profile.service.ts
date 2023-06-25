@@ -18,10 +18,7 @@ export class ProfileService {
     @GetUser() User: User,
     @Body() changepassworddth: changepasswordDto,
   ) {
-    //
-
-    const userid = User.id;
-    const user = await this.userRepository.findOne({ where: { id: userid } });
+    const user = await this.userRepository.findOne({ where: { id: User.id } });
     if (changepassworddth.newpassword === changepassworddth.oldpassword)
       throw new BadRequestException({
         success: false,

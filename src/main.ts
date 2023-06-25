@@ -5,12 +5,10 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('basic crud api and auth ')
-    .setDescription(
-      'Backend api for basic crud for user and auth using jwt and otp',
-    )
+    .setTitle('Backend intern task ')
+    .setDescription('Backend api for User Authentication ')
     .setVersion('1.0')
-    .addTag('Backend intern task')
+    .addTag('Chat app user login register')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

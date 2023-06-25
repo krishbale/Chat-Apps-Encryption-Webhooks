@@ -11,7 +11,6 @@ import { JWTSECRET } from 'src/constant';
       signOptions: { expiresIn: '60s' },
     }),
     UserModule,
-    //   MyGateway
   ],
   providers: [MyGateway],
   controllers: [],

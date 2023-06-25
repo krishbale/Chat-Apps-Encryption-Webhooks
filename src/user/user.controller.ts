@@ -20,7 +20,6 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   //create user
-
   @Post('/register')
   create(@Body() loginuserDto: loginuserDto) {
     return this.userService.create(loginuserDto);

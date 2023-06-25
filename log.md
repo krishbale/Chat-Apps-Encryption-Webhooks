@@ -53,3 +53,15 @@ Completed Task:
 Blockers ---- SOcket IO ----Couldnot able to complete Private chats..
 ###############
 Status Github.....
+
+
+Sunday 25 June 2023  10:30am : 6:30 PM 
+
+Completed Task :
+1.Updated the change password functionality 
+2. Authenticated  socket id connection in chat applicatins.
+3. Added private chat system in socket 
+4.Added the user offline and online status in database for chat applications.
+5.Refactoring and formatting code ....
+
+Status :GIthub....

@@ -1,5 +1,5 @@
 import { SMTP } from 'src/constant';
-import nodemailer from 'nodemailer';
+import * as nodemailer from 'nodemailer';
 const transporter = nodemailer.createTransport({
   host: SMTP.host,
   port: SMTP.port,

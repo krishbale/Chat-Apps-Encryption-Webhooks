@@ -8,7 +8,7 @@ import { User } from 'src/user/entity/user.entity';
 export class ProfileController {
   constructor(private profileservice: ProfileService) {}
   @UseGuards(JWTAUTHGuard)
-  @Get('me')
+  @Get('')
   profile(@GetUser() user: User) {
     return this.profileservice.profile(user);
   }

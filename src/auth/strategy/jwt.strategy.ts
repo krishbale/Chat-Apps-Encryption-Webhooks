@@ -15,13 +15,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    // if (payload.type !== TokenType.JW) throw new UnauthorizedException();
     const user = await this.dataSource
       .getRepository(User)
       .findOne({ where: { id: payload.sub, isverified: true } });
-
     if (!user) throw new UnauthorizedException();
-    // console.log(user)
     return user;
   }
 }

@@ -284,7 +284,7 @@ export class UserService {
 
   //
   async updateUserStatus(userID: string, status: boolean) {
-    return await this.userRepository.update(userID, { isverified: status });
+    return await this.userRepository.update(userID, { isOnline: status });
   }
 
   //finding user database by email
