@@ -1,5 +1,4 @@
 import { BadRequestException, Injectable, } from '@nestjs/common';
-import { UpdateUserDto, } from './dto/updateuser.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository, } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
@@ -14,6 +13,7 @@ import { loginuserDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { IJWTPayload, TokenType } from 'src/auth/interfaces/auth.interface';
 import { JWTSECRET } from 'src/constant';
+import { stat } from 'fs';
 
 @Injectable()
 export class UserService {
@@ -81,7 +81,7 @@ return { success: true, verified:true, message: 'User logged in successfully.', 
 }
 //update user by id
   UpdateUser(
-    updateUserDto: UpdateUserDto,
+    updateUserDto: loginuserDto,
     userID: string,
   ) {
     return this.userRepository.update(userID, updateUserDto);
@@ -187,6 +187,11 @@ return { success: true, verified:true, message: 'User logged in successfully.', 
     userID: string
   ) {
     return this.userRepository.delete(userID)
+  }
+
+  //
+  async updateUserStatus(userID:string ,status:boolean){
+   return  await this.userRepository.update(userID, { isverified: status });
   }
 
   //finding user database by email

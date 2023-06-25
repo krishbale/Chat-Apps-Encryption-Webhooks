@@ -12,6 +12,7 @@ import { ProfileModule } from './profile/profile.module';
 import { ormConfig } from './orm-config';
 import { OtpService } from './otp/otp.service';
 import { OtpModule } from './otp/otp.module';
+import { GatewayModule } from './gateway/gateway.module';
 
 @Module({
   imports:
@@ -19,8 +20,9 @@ import { OtpModule } from './otp/otp.module';
       UserModule,
       ProfileModule,
       OtpModule,
+      GatewayModule
     ],
   controllers: [AppController],
-  providers: [AppService, OtpService,],
+  providers: [AppService, OtpService],
 })
 export class AppModule { }

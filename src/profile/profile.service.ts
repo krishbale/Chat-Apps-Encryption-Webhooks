@@ -4,21 +4,26 @@ import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
+import { GetUser } from 'src/decorators/getuser.decorator';
 @Injectable()
 export class ProfileService {
     @InjectRepository(User)
     private userRepository: Repository<User>
-    profile(){
-        return { message:"I am protected route"};
+
+
+
+    profile(@GetUser() User:User){
+        return {  data: User.id }
 
     }
 
+ 
 
-    async changepassword(@Body() changepassworddth:changepasswordDto){
+    async changepassword(@GetUser() User:User, @Body() changepassworddth:changepasswordDto){
         //
-
-        const user =  await this.userRepository.findOne({ where: { id: changepassworddth.id } });          if(!user) throw new BadRequestException({ success: false, verified:null, message: 'User not found.' });
-   
+        
+            const userid = User.id;
+   const user = await this.userRepository.findOne({ where: { id: userid } });
         if(changepassworddth.newpassword === changepassworddth.oldpassword) throw new BadRequestException({ success: false, verified:null, message: 'New password and old password are same.' });
       
         const isPasswordValid = await bcrypt.compare(changepassworddth.oldpassword,  user.password);
