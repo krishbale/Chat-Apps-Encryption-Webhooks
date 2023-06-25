@@ -1,20 +1,13 @@
-import { IsJWT, IsNotEmpty,IsString } from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class ChatMessage {
+  @IsString()
+  to: string;
+  @IsNotEmpty()
+  @IsString()
+  nickname: string;
 
-    @IsString()
-    to:string;
-    @IsNotEmpty()
-    @IsString()
-    nickname: string;
-
-    @IsNotEmpty()
-    @IsString()
-    message: string;
+  @IsNotEmpty()
+  @IsString()
+  message: string;
 }
-export class HeaderToken {
-   
-    @IsNotEmpty()
-    @IsJWT()
-    token: string;
-  }

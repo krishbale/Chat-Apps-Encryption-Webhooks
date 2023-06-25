@@ -9,19 +9,18 @@ import { JwtModule } from '@nestjs/jwt';
 import { JWTSECRET } from 'src/constant';
 import { JwtStrategy } from 'src/auth/strategy/jwt.strategy';
 
-
-
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
-    OtpModule,JwtModule.register({
+    OtpModule,
+    JwtModule.register({
       secret: JWTSECRET,
-      signOptions: { expiresIn: '60s' }
-    })
+      signOptions: { expiresIn: '60s' },
+    }),
   ],
-  
+
   controllers: [UserController],
-  providers: [UserService,OtpService,JwtStrategy],
-  exports: [UserService]
+  providers: [UserService, OtpService, JwtStrategy],
+  exports: [UserService],
 })
 export class UserModule {}

@@ -5,21 +5,19 @@ import { changepasswordDto } from './dto/changepassword.dto';
 import { GetUser } from 'src/decorators/getuser.decorator';
 import { User } from 'src/user/entity/user.entity';
 @Controller('profile')
-
 export class ProfileController {
-    constructor(private profileservice:ProfileService){}
-    @UseGuards( JWTAUTHGuard)
-    @Get('me')
-    profile(@GetUser() user:User){
-        return this.profileservice.profile(user);
-
-    }
-    @Post('changepassword')
-    @UseGuards(JWTAUTHGuard)
-    changepassword(@GetUser() User:User, @Body() changepassworddth:changepasswordDto ){
-
-        return this.profileservice.changepassword(User,changepassworddth); 
-    }
-
-    
+  constructor(private profileservice: ProfileService) {}
+  @UseGuards(JWTAUTHGuard)
+  @Get('me')
+  profile(@GetUser() user: User) {
+    return this.profileservice.profile(user);
+  }
+  @Post('changepassword')
+  @UseGuards(JWTAUTHGuard)
+  changepassword(
+    @GetUser() User: User,
+    @Body() changepassworddth: changepasswordDto,
+  ) {
+    return this.profileservice.changepassword(User, changepassworddth);
+  }
 }

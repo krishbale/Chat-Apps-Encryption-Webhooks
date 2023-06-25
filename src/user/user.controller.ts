@@ -1,19 +1,26 @@
-import { Body, Controller, Get, Post, Param, Patch, ParseUUIDPipe, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Param,
+  Patch,
+  ParseUUIDPipe,
+  Delete,
+} from '@nestjs/common';
 import { UserService } from './user.service';
-import { resetpasswordto, verifydto } from 'src/otp/dto/veifyotp.dto';
-import { validatedto } from 'src/otp/dto/veifyotp.dto';
 import { loginuserDto } from './dto/login.dto';
+import {
+  resetpasswordto,
+  validatedto,
+  verifydto,
+} from 'src/otp/dto/veifyotp.dto';
 @Controller('/user')
 export class UserController {
-
-  constructor(private userService: UserService,
-  ) { }
-
-
-
+  constructor(private userService: UserService) {}
 
   //create user
- 
+
   @Post('/register')
   create(@Body() loginuserDto: loginuserDto) {
     return this.userService.create(loginuserDto);
@@ -33,44 +40,36 @@ export class UserController {
     return this.userService.UpdateUser(updateUserDto, userID);
   }
 
-
-
   //get user by id
   @Get('/:userID')
-  show(
-    @Param('userID', ParseUUIDPipe) userID: string,
-  ) {
+  show(@Param('userID', ParseUUIDPipe) userID: string) {
     return this.userService.getUserByID(userID);
   }
 
   //delete user by id
   @Delete('/:userID')
-  delete(
-    @Param('userID', ParseUUIDPipe) userID: string,
-  ) {
+  delete(@Param('userID', ParseUUIDPipe) userID: string) {
     return this.userService.deleteUser(userID);
   }
   //request otp by email
   @Post('/requestotp')
-  requestotp(@Body() verifydto: verifydto) {
-    return this.userService.requestotp(verifydto)
+  requestotp(@Body() verifyDto: verifydto) {
+    return this.userService.requestotp(verifyDto);
   }
   //validate otp by email and otp code from email
   @Post('/validateotp')
-  validateotp(@Body() validatedto: validatedto) {
-    return this.userService.validateotp(validatedto)
+  validateotp(@Body() validatedTo: validatedto) {
+    return this.userService.validateotp(validatedTo);
   }
   //forget password by email
   @Post('/forgetpassword')
-  forgetpassword(@Body() verifydto: verifydto) {
-    return this.userService.forgetpassword(verifydto)
+  forgetpassword(@Body() verifyDto: verifydto) {
+    return this.userService.forgetpassword(verifyDto);
   }
 
   //reset password by email and otp code from email
   @Post('/resetpassword')
-  resetpassword(@Body() resetpasswordto: resetpasswordto) {
-    return this.userService.resetpassword(resetpasswordto)
+  resetpassword(@Body() resetPasswordto: resetpasswordto) {
+    return this.userService.resetpassword(resetPasswordto);
   }
-
-
 }

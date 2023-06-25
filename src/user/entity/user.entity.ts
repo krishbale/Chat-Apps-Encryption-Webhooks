@@ -1,23 +1,23 @@
-import * as bcrypt from 'bcrypt';
-
-import {OTP } from '../../otp/enitity/otp.entity';
-import {   Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-
+import { OTP } from '../../otp/enitity/otp.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
 
 @Entity({ name: 'users' })
-export class User    {
-  
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-
-  @Column("varchar", { unique: true, length: 50 })
+  @Column('varchar', { unique: true, length: 50 })
   email: string;
 
   @Column('varchar', { length: 128 })
   password: string;
-
-
 
   @CreateDateColumn()
   createdat: Date;
@@ -25,15 +25,12 @@ export class User    {
   @UpdateDateColumn()
   updatedat: Date;
 
-  @Column( 'boolean',{ default:false})
-  isverified:boolean
+  @Column('boolean', { default: false })
+  isverified: boolean;
 
   @OneToMany(() => OTP, (otp) => otp.user)
   otps: OTP[];
 
-
-  @Column('boolean',{ default:false})
-  isOnline:boolean
-  
- 
+  @Column('boolean', { default: false })
+  isOnline: boolean;
 }
