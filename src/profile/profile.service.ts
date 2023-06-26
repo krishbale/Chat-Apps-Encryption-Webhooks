@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
 import { GetUser } from 'src/decorators/getuser.decorator';
+
 @Injectable()
 export class ProfileService {
   @InjectRepository(User)
@@ -13,7 +14,7 @@ export class ProfileService {
   profile(@GetUser() User: User) {
     return { data: User.id };
   }
-
+  //change password with old password
   async changepassword(
     @GetUser() User: User,
     @Body() changepassworddth: changepasswordDto,

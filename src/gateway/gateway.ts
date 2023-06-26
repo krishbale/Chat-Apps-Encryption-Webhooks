@@ -1,5 +1,6 @@
 import { UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
 import {
+  ConnectedSocket,
   MessageBody,
   OnGatewayConnection,
   OnGatewayDisconnect,
@@ -8,9 +9,8 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { Repository } from 'typeorm';
 import { Socket, Server } from 'socket.io';
-import { ChatMessage } from './dto/Chat.message.dto';
+import { MessageDto } from './dto/Chat.message.dto';
 import { WsExceptionFilter } from './ws-exception.filter';
 import { UserService } from 'src/user/user.service';
 import { JwtService } from '@nestjs/jwt';
@@ -39,17 +39,16 @@ export class MyGateway
   async handleConnection(socket: Socket) {
     try {
       //after passing access token in header
-      const token = socket.handshake.headers.token as string;
-      //if not token disconnect
-      if (!token) return socket.disconnect(true);
-      //encode id by token
+      const token =
+        (socket.handshake.headers.token as string) ||
+        socket.handshake.auth.token ||
+        socket.handshake.headers.authorization;
+
+      if (!socket) return socket.disconnect(true);
       const jwtobject = this.jwtService.verify(token, {
         secret: JWTSECRET,
       });
-      //search user by decode token
       const user: User = await this.userService.getUserByID(jwtobject.sub);
-
-      //if user not found disconnect
       if (!user) {
         return socket.disconnect(true);
       } else {
@@ -73,7 +72,8 @@ export class MyGateway
     //afterdisconnecting
     socket.broadcast.emit('user disconnected');
     //update online status to false
-    await this.userService.updateUserStatus(socket.data.userId, false);
+    socket.data.userId &&
+      (await this.userService.updateUserStatus(socket.data.userId, false));
     console.log(
       `Client with connection id: ${socket.data.userId} disconnected`,
     );
@@ -81,20 +81,48 @@ export class MyGateway
   //for group chat
   @SubscribeMessage('group-chat')
   @UsePipes(new ValidationPipe())
-  handleMessage(@MessageBody() message: ChatMessage) {
+  handleMessage(@MessageBody() message: MessageDto) {
     this.server.emit('room', {
       message,
       time: new Date().toString(),
     });
   }
+
   //for private chat
   @SubscribeMessage('private-chat')
   @UsePipes(new ValidationPipe())
-  handlePrivateMessage(@MessageBody() message: ChatMessage) {
+  handlePrivateMessage(
+    @MessageBody() message: MessageDto,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    //storing message in database
     this.server.to(message.to).emit('personal', {
-      to: message.to,
+      sender: socket.data.userId,
       message,
+
       time: new Date().toString(),
     });
+  }
+  //for joinging room
+  @SubscribeMessage('join-room')
+  onJoin(@MessageBody() MessageDto: MessageDto) {
+    this.server.socketsJoin(MessageDto.to);
+    {
+      console.log('new room joined ', MessageDto.to);
+    }
+  }
+
+  //fo mentioning user
+  @SubscribeMessage('mention')
+  onMention(
+    @MessageBody() Messagedto: MessageDto,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    if (Messagedto.to && Messagedto.to !== socket.data.userId) {
+      this.server.to(Messagedto.to).emit('notify', {
+        message: 'you are mentioned',
+        time: new Date().toString(),
+      });
+    }
   }
 }

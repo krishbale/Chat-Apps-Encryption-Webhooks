@@ -8,7 +8,7 @@ import { JWTSECRET } from 'src/constant';
   imports: [
     JwtModule.register({
       secret: JWTSECRET,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '30min' },
     }),
     UserModule,
   ],

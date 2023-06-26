@@ -22,6 +22,7 @@ export class OTP {
 
   @Column('uuid')
   user_id: string;
+
   @ManyToOne(() => User, (user) => user.otps, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: User;
