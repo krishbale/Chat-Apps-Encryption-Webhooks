@@ -1,19 +1,22 @@
-# nestjs-till-day3-backend-intern
+# nestjs--backend-intern Task Log
+Day 1 -
 Day of backend intern
-Resources Used on Learned 
-docs-Nest js, 
-ORM docs
- , youtube nest js
- Topic Covers , 
-Created repo using documentation 
-While learning 
-Controllers,
- Providers,
- pipes for validation  and filtering ,
- Validation using DTO ,
-ORM ,
-Typescript 
+Tuesday 20 June 2023 10:30AM ---- 6:30PM
+Task
+1.Resources Used on Learned 
+2.docs-Nest js, 
+3.ORM docs
+4.youtube nest js
+5.Created repo using documentation 
+6.While learning 
+7.Controllers,
+8.Providers,
+9.pipes for validation  and filtering ,
+10.Validation using DTO ,
+11.ORM ,
+12.Typescript
 
+Day-2
 Wednesday 21 June 2023 11:30AM :6:50PM
 Completed Task 
 Migrated the Crud operation from mysql to postgresql
@@ -26,7 +29,7 @@ Installation and initialization of postgresql server in local machine.
 Status 
 Github  
 
-
+Day-3
 Thursday 22 June 2023  11:30 A.M  : 21:00PM
 Completed Task:
 Learned about Database Migration and implemented basic migration 
@@ -38,6 +41,9 @@ SSL version  error while sending  otp mail to users
 ……………….
 Status GIthub 
 
+
+
+Day-4
 Friday 23 June 2023  10:30am : 22:29 PM
 
 Completed Task:
@@ -54,7 +60,7 @@ Blockers ---- SOcket IO ----Couldnot able to complete Private chats..
 ###############
 Status Github.....
 
-
+Day-5
 Sunday 25 June 2023  10:30am : 6:30 PM 
 
 Completed Task :
@@ -64,4 +70,4 @@ Completed Task :
 4.Added the user offline and online status in database for chat applications.
 5.Refactoring and formatting code ....
 
-Status :GIthub....
+Status Github
