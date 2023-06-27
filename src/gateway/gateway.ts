@@ -16,7 +16,8 @@ import { UserService } from 'src/user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { JWTSECRET } from 'src/constant';
 import { User } from 'src/user/entity/user.entity';
-
+import { ChatService } from 'src/chat/chat.service';
+import { creatchatDTO } from 'src/chat/chat.dto.ts/createchat.dto';
 @WebSocketGateway({
   cors: {
     origin: '*',
@@ -32,13 +33,13 @@ export class MyGateway
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
+    private chatService: ChatService,
   ) {}
   afterInit(server: Server) {
     console.log(server, 'Init');
   }
   async handleConnection(socket: Socket) {
     try {
-      //after passing access token in header
       const token =
         (socket.handshake.headers.token as string) ||
         socket.handshake.auth.token ||
@@ -52,16 +53,18 @@ export class MyGateway
       if (!user) {
         return socket.disconnect(true);
       } else {
-        socket.emit('connected', {
-          message: 'connected',
-          time: new Date().toString(),
-        });
         //connect to socket with userid
         socket.join(user.id);
+
         //set data to socket
         socket.data = { userId: user.id };
+
         //update online status to true
         await this.userService.updateUserStatus(user.id, true);
+        socket.emit('user-connected'),
+          {
+            userId: socket.data.userId,
+          };
         console.log(`Client with user  id: ${user.id.toString()} connected `);
       }
     } catch (e) {
@@ -70,7 +73,9 @@ export class MyGateway
   }
   async handleDisconnect(socket: Socket) {
     //afterdisconnecting
-    socket.broadcast.emit('user disconnected');
+    socket.emit('user-disconnected', {
+      userId: socket.data.userId,
+    });
     //update online status to false
     socket.data.userId &&
       (await this.userService.updateUserStatus(socket.data.userId, false));
@@ -81,26 +86,39 @@ export class MyGateway
   //for group chat
   @SubscribeMessage('group-chat')
   @UsePipes(new ValidationPipe())
-  handleMessage(@MessageBody() message: MessageDto) {
+  async handleMessage(
+    @MessageBody() message: any,
+    @ConnectedSocket() Socket: Socket,
+  ) {
     this.server.emit('room', {
-      message,
-      time: new Date().toString(),
+      sender: Socket.data.userId,
+      message: message.message,
+      group_id: message.group_id,
+    });
+    await this.chatService.creategroupchat({
+      message: message.message,
+      sender_id: Socket.data.userId,
+      group_id: message.group_id,
     });
   }
 
   //for private chat
   @SubscribeMessage('private-chat')
   @UsePipes(new ValidationPipe())
-  handlePrivateMessage(
-    @MessageBody() message: MessageDto,
+  async handlePrivateMessage(
+    @MessageBody() message: any,
     @ConnectedSocket() socket: Socket,
   ) {
+    await this.chatService.createchat({
+      message: message.message,
+      sender_id: socket.data.userId,
+      receiver_id: message.to,
+    });
     //storing message in database
     this.server.to(message.to).emit('personal', {
       sender: socket.data.userId,
-      message,
-
-      time: new Date().toString(),
+      message: message.message,
+      receiver: message.to,
     });
   }
   //for joinging room
@@ -122,6 +140,29 @@ export class MyGateway
       this.server.to(Messagedto.to).emit('notify', {
         message: 'you are mentioned',
         time: new Date().toString(),
+      });
+    }
+  }
+
+  @SubscribeMessage('reply')
+  async OnReply(@MessageBody() reply: any, @ConnectedSocket() socket: Socket) {
+    if (reply.to && reply.to !== socket.data.userId) {
+      const parentmessage = await this.chatService.findchatbyid(reply.msgid);
+      if (!parentmessage) {
+        this.server.to(reply.from).emit('notify', {
+          message: 'message not found',
+        });
+      }
+      this.server.to(reply.to).emit('notify', {
+        msgid: reply.msgid,
+        reply: reply.reply,
+        from: socket.data.userId,
+      });
+      await this.chatService.createreply({
+        reply: reply.reply,
+        msgid: reply.msgid,
+        from: socket.data.userId,
+        to: reply.to,
       });
     }
   }

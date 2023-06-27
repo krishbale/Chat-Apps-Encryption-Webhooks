@@ -15,7 +15,7 @@ import { JwtStrategy } from 'src/auth/strategy/jwt.strategy';
     OtpModule,
     JwtModule.register({
       secret: JWTSECRET,
-      signOptions: { expiresIn: '30min' },
+      signOptions: { expiresIn: '300000min' },
     }),
   ],
 

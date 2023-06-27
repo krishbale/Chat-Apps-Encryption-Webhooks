@@ -9,6 +9,8 @@ import { ormConfig } from './orm-config';
 import { OtpService } from './otp/otp.service';
 import { OtpModule } from './otp/otp.module';
 import { GatewayModule } from './gateway/gateway.module';
+import { ChatService } from './chat/chat.service';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -17,8 +19,9 @@ import { GatewayModule } from './gateway/gateway.module';
     ProfileModule,
     OtpModule,
     GatewayModule,
+    ChatModule,
   ],
   controllers: [AppController],
-  providers: [AppService, OtpService],
+  providers: [AppService, OtpService, ChatService],
 })
 export class AppModule {}

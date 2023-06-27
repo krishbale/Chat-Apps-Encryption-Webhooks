@@ -71,3 +71,16 @@ Completed Task :
 5.Refactoring and formatting code ....
 
 Status Github
+
+Day -5
+
+Monday 26 June 2023 10;30 am : 6:30 pm 
+1.Created frontend with react for socket io 
+2. added join group in backend
+3. added mention feature in backend
+4. connected frontend with backend 
+5. able to send message to  private and group chat from frontend
+
+blockers.. unable to connect two users with two id using two browsers
+
+status .. github
