@@ -72,7 +72,7 @@ Completed Task :
 
 Status Github
 
-Day -5
+Day -6
 
 Monday 26 June 2023 10;30 am : 6:30 pm 
 1.Created frontend with react for socket io 
@@ -84,3 +84,11 @@ Monday 26 June 2023 10;30 am : 6:30 pm
 blockers.. unable to connect two users with two id using two browsers
 
 status .. github
+
+
+Day -7 
+Tuesday 27 June 2023 10:30 am : 6:30 pm
+1.SOlved the connecting socket io for diffrent users from the browsers frontend
+2. Created and updated database for group chat and private chat in socket io 
+3. Added functionality such as mentioning users and notify in , private chat and reply  frontend
+4.

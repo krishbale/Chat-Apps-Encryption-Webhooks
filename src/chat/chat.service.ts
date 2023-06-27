@@ -1,8 +1,9 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Body, Injectable, Req, UploadedFile } from '@nestjs/common';
 import { Chat } from './entity/chat.entity';
 import { DataSource } from 'typeorm';
 import { GroupChat } from './entity/group.chat.entity';
 import { ChatReply } from './entity/chatreply.entity';
+import { User } from 'src/user/entity/user.entity';
 
 @Injectable()
 export class ChatService {
@@ -12,6 +13,7 @@ export class ChatService {
       message: message.message,
       sender_id: message.sender_id,
       receiver_id: message.receiver_id,
+      file: message.file,
     });
   }
   async creategroupchat(@Body() message: any) {
@@ -34,4 +36,13 @@ export class ChatService {
       from: reply.from,
     });
   }
+  //uploading file in database
+  // async uploadfile(
+  //   @Req() user: User,
+  //   @UploadedFile() file: Express.Multer.File,
+  // ) {
+  //   return await this.dataSource.getRepository(Chat).whre {
+  //     file: file.filename,
+  //   });
+  // }
 }

@@ -15,6 +15,9 @@ export class Chat {
   @Column({})
   message: string;
 
+  @Column({ nullable: true })
+  file: string;
+
   @Column('uuid', {})
   sender_id: string;
 

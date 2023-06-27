@@ -1,4 +1,5 @@
-import { UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
+import { UsePipes, ValidationPipe, UseFilters, Post } from '@nestjs/common';
+
 import {
   ConnectedSocket,
   MessageBody,
@@ -17,7 +18,6 @@ import { JwtService } from '@nestjs/jwt';
 import { JWTSECRET } from 'src/constant';
 import { User } from 'src/user/entity/user.entity';
 import { ChatService } from 'src/chat/chat.service';
-import { creatchatDTO } from 'src/chat/chat.dto.ts/createchat.dto';
 @WebSocketGateway({
   cors: {
     origin: '*',
@@ -113,12 +113,14 @@ export class MyGateway
       message: message.message,
       sender_id: socket.data.userId,
       receiver_id: message.to,
+      file: message.file,
     });
     //storing message in database
     this.server.to(message.to).emit('personal', {
       sender: socket.data.userId,
       message: message.message,
       receiver: message.to,
+      file: message.file,
     });
   }
   //for joinging room
