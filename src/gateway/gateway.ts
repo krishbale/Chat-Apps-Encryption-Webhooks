@@ -1,5 +1,10 @@
-import { UsePipes, ValidationPipe, UseFilters, Post } from '@nestjs/common';
-
+import {
+  UsePipes,
+  ValidationPipe,
+  UseFilters,
+  UseInterceptors,
+} from '@nestjs/common';
+import fs from 'fs';
 import {
   ConnectedSocket,
   MessageBody,
@@ -18,6 +23,7 @@ import { JwtService } from '@nestjs/jwt';
 import { JWTSECRET } from 'src/constant';
 import { User } from 'src/user/entity/user.entity';
 import { ChatService } from 'src/chat/chat.service';
+
 @WebSocketGateway({
   cors: {
     origin: '*',
@@ -40,12 +46,14 @@ export class MyGateway
   }
   async handleConnection(socket: Socket) {
     try {
+      //get token from header or
       const token =
-        (socket.handshake.headers.token as string) ||
-        socket.handshake.auth.token ||
+        (socket.handshake.headers.token as string) || ///postman
+        socket.handshake.auth.token || //frontend
         socket.handshake.headers.authorization;
 
       if (!socket) return socket.disconnect(true);
+      //verify token
       const jwtobject = this.jwtService.verify(token, {
         secret: JWTSECRET,
       });
@@ -113,21 +121,21 @@ export class MyGateway
       message: message.message,
       sender_id: socket.data.userId,
       receiver_id: message.to,
-      file: message.file,
     });
     //storing message in database
     this.server.to(message.to).emit('personal', {
       sender: socket.data.userId,
       message: message.message,
       receiver: message.to,
-      file: message.file,
     });
   }
   //for joinging room
   @SubscribeMessage('join-room')
   onJoin(@MessageBody() MessageDto: MessageDto) {
+    ///joing room with room id as  to
     this.server.socketsJoin(MessageDto.to);
     {
+      //
       console.log('new room joined ', MessageDto.to);
     }
   }
@@ -138,6 +146,7 @@ export class MyGateway
     @MessageBody() Messagedto: MessageDto,
     @ConnectedSocket() socket: Socket,
   ) {
+    //check if mention is not for same user
     if (Messagedto.to && Messagedto.to !== socket.data.userId) {
       this.server.to(Messagedto.to).emit('notify', {
         message: 'you are mentioned',
@@ -148,6 +157,7 @@ export class MyGateway
 
   @SubscribeMessage('reply')
   async OnReply(@MessageBody() reply: any, @ConnectedSocket() socket: Socket) {
+    //if reply is not for same user and message exist in database
     if (reply.to && reply.to !== socket.data.userId) {
       const parentmessage = await this.chatService.findchatbyid(reply.msgid);
       if (!parentmessage) {
@@ -155,11 +165,14 @@ export class MyGateway
           message: 'message not found',
         });
       }
+      //emmmiting reply to user
       this.server.to(reply.to).emit('notify', {
         msgid: reply.msgid,
         reply: reply.reply,
         from: socket.data.userId,
       });
+
+      //storing reply in database
       await this.chatService.createreply({
         reply: reply.reply,
         msgid: reply.msgid,
@@ -167,5 +180,11 @@ export class MyGateway
         to: reply.to,
       });
     }
+  }
+  // uploadin file in socket using emit method
+  @SubscribeMessage('upload')
+  handleUpload(@MessageBody() file: any) {
+    this.server.emit('file', file);
+    console.log(file);
   }
 }

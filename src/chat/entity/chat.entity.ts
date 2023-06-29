@@ -12,11 +12,11 @@ export class Chat {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({})
+  @Column({ nullable: true })
   message: string;
 
   @Column({ nullable: true })
-  file: string;
+  file?: string;
 
   @Column('uuid', {})
   sender_id: string;

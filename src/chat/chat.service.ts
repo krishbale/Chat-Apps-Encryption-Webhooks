@@ -1,9 +1,8 @@
-import { Body, Injectable, Req, UploadedFile } from '@nestjs/common';
+import { Body, Injectable, Post, Req, UploadedFile } from '@nestjs/common';
 import { Chat } from './entity/chat.entity';
 import { DataSource } from 'typeorm';
 import { GroupChat } from './entity/group.chat.entity';
 import { ChatReply } from './entity/chatreply.entity';
-import { User } from 'src/user/entity/user.entity';
 
 @Injectable()
 export class ChatService {
@@ -36,13 +35,17 @@ export class ChatService {
       from: reply.from,
     });
   }
-  //uploading file in database
-  // async uploadfile(
-  //   @Req() user: User,
-  //   @UploadedFile() file: Express.Multer.File,
-  // ) {
-  //   return await this.dataSource.getRepository(Chat).whre {
-  //     file: file.filename,
-  //   });
+
+  // async savefile(id: string, file: Express.Multer.File) {
+  //   const chatRepository = this.dataSource.getRepository(Chat);
+
+  //   const chat = await chatRepository.findOne(id);
+
+  //   if (chat) {
+  //     chat.file = file;
+  //     return await chatRepository.save(chat);
+  //   } else {
+  //     throw new Error('Chat not found');
+  //   }
   // }
 }

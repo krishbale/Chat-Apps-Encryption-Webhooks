@@ -11,6 +11,7 @@ import { OtpModule } from './otp/otp.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { ChatService } from './chat/chat.service';
 import { ChatModule } from './chat/chat.module';
+import { S3Module } from './s3/s3.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ChatModule } from './chat/chat.module';
     OtpModule,
     GatewayModule,
     ChatModule,
+    S3Module,
   ],
   controllers: [AppController],
   providers: [AppService, OtpService, ChatService],

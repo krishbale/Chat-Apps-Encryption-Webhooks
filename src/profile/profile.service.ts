@@ -5,13 +5,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
 import { GetUser } from 'src/decorators/getuser.decorator';
-import { Chat } from 'src/chat/entity/chat.entity';
 import { DataSource } from 'typeorm';
 @Injectable()
 export class ProfileService {
   @InjectRepository(User)
   private userRepository: Repository<User>;
   private readonly dataSource: DataSource;
+
   profile(@GetUser() User: User) {
     return { data: User.id };
   }

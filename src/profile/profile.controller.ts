@@ -2,8 +2,9 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  ParseUUIDPipe,
   Post,
-  Req,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -14,15 +15,16 @@ import { changepasswordDto } from './dto/changepassword.dto';
 import { GetUser } from 'src/decorators/getuser.decorator';
 import { User } from 'src/user/entity/user.entity';
 import { ChatService } from 'src/chat/chat.service';
-import { Chat } from 'src/chat/entity/chat.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { storagefile } from 'src/utils/storge/config';
+import { MyGateway } from 'src/gateway/gateway';
+import { Chat } from 'src/chat/entity/chat.entity';
 @Controller('profile')
 export class ProfileController {
-  dataSource: any;
   constructor(
     private profileservice: ProfileService,
     private chatserice: ChatService,
+    private mygateway: MyGateway,
   ) {}
 
   @UseGuards(JWTAUTHGuard)
@@ -38,15 +40,31 @@ export class ProfileController {
   ) {
     return this.profileservice.changepassword(User, changepassworddth);
   }
-  @Post('uploadfile')
+
   @UseGuards(JWTAUTHGuard)
+  @Post('/:id/uploadfile')
   @UseInterceptors(FileInterceptor('file', { storage: storagefile }))
   async uploadfile(
+    @Param('id', new ParseUUIDPipe()) id: string,
     @GetUser() user: User,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log('upload avatar');
-    console.log(file);
-    // return await this.chatserice.uploadfile(user, file);
+    await this.chatserice.createchat({
+      sender_id: user.id,
+      file: `/uploads/${Date.now()}${file.originalname}`,
+      receiver_id: id,
+    });
+    this.mygateway.server.to(id).emit('file', {
+      sender: user.id,
+      file: `/uploads/${Date.now()}${file.originalname}`,
+      receiver: id,
+    });
+
+    return {
+      success: true,
+      emmitted: true,
+      message: 'File upload successfull ',
+      fileurl: `/uploads/${Date.now()}${file.originalname}`,
+    };
   }
 }

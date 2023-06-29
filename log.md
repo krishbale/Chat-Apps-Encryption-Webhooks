@@ -85,15 +85,14 @@ blockers.. unable to connect two users with two id using two browsers
 
 status .. github
 
-
 Day -7 
-Tuesday 27 June 2023 10:30 am : 6:30 pm
-1.SOlved the connecting socket io for diffrent users from the browsers frontend
-2. Created and updated database for group chat and private chat in socket io 
-3. Added functionality such as private chat,group chat , mentioned user in frontend and  reply user  in backend
-4. tried uploding file from postman to nestjs server.
 
+Tuesday 27 June 2023  11:00am :7:00 pm
+Tasks.
 
- BLockers: no option to upload file using socket from postman , 
+1.Went through the template  ultimate nest,  minio and  s3 advantages and alternative
+2.Buffered file from frontend and emit the file through socket and also went throught similar repo
+and library such as   socketio-stream and file-upload.
+3.Also uses the postman to upload the file and which is eventually saved in public folder in backend which tools like multer.
 
- status ..github.com
+Status ...Github
