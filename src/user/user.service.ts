@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import * as bcrypt from 'bcrypt';
@@ -12,6 +12,9 @@ import { loginuserDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { IJWTPayload, TokenType } from 'src/auth/interfaces/auth.interface';
 import { JWTSECRET } from 'src/constant';
+import { OTP } from 'src/otp/enitity/otp.entity';
+import { generateOTP } from 'src/utils/otpgenerator/generatenewotp';
+import { log } from 'console';
 
 @Injectable()
 export class UserService {
@@ -20,35 +23,54 @@ export class UserService {
     private userRepository: Repository<User>,
     private otpservice: OtpService,
     private jwtService: JwtService,
+    private dataSource: DataSource,
   ) {}
 
-  //creating new user and sending otp to email
+  //creating new user and sending otp to email using transcation
   async create(loginuserDto: loginuserDto) {
-    const isuser = await this.userRepository.findOne({
-      where: { email: loginuserDto.email },
-    });
-    if (isuser)
-      throw new BadRequestException({
-        success: false,
-        message: 'Email already exists.',
-      });
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
     try {
+      const usercheck = await queryRunner.manager.getRepository(User).findOne({
+        where: { email: loginuserDto.email },
+      });
+      // const isuser = await this.userRepository.findOne({
+      //   where: { email: loginuserDto.email },
+      // });
+      if (usercheck)
+        throw new BadRequestException({
+          success: false,
+          message: 'Email already exists.',
+        });
+      const user = new User();
+
       const salt = await bcrypt.genSalt();
       loginuserDto.password = await bcrypt.hash(loginuserDto.password, salt);
-      const user = await this.userRepository.save(loginuserDto);
-      const code = await this.otpservice.createOTP(
-        user.id,
-        OTPType.EMAIL_VERIFICATION,
-      );
-      const text = `${code.code} is your verification code`;
+
+      await queryRunner.manager.getRepository(User).save(loginuserDto);
+
+      const code = generateOTP(6);
+
+      const otp = await queryRunner.manager
+        .getRepository(OTP)
+        .save({ code, user_id: user.id, otp_type: OTPType.EMAIL_VERIFICATION });
+
+      console.log(otp);
+      const text = `${code} is your verification code`;
       sendmail(user.email, text);
+
+      await queryRunner.commitTransaction();
       return {
         success: true,
         message: 'User created please verify email with otp ,',
         text,
       };
     } catch (e) {
-      console.log(e);
+      queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
     }
   }
   async generateTokens(user_id: string): Promise<{ access_token: string }> {
@@ -105,8 +127,27 @@ export class UserService {
     };
   }
   //update user by id
-  UpdateUser(updateUserDto: loginuserDto, userID: string) {
-    return this.userRepository.update(userID, updateUserDto);
+  //Transcation
+  async UpdateUser(updateUserDto: loginuserDto, userID: string) {
+    const queryRunner = await this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      await queryRunner.manager
+        .getRepository(User)
+        .update(userID, updateUserDto);
+
+      await queryRunner.commitTransaction();
+    } catch (e) {
+      await queryRunner.rollbackTransaction();
+      throw new BadRequestException({
+        succes: false,
+        message: e,
+      });
+    } finally {
+      await queryRunner.release();
+    }
+    // return this.userRepository.update(userID, updateUserDto);
   }
 
   async requestotp(verifydto: verifydto) {
@@ -269,6 +310,7 @@ export class UserService {
       resetpasswordto.otp,
       OTPType.PASSWORD_RESET,
     );
+
     return { success: true, message: 'Password reset successfully.' };
   }
 

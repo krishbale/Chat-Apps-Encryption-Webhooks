@@ -11,8 +11,8 @@ import { OtpModule } from './otp/otp.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { ChatService } from './chat/chat.service';
 import { ChatModule } from './chat/chat.module';
-import { S3Module } from './s3/s3.module';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({ useFactory: () => ormConfig }),
@@ -21,7 +21,11 @@ import { S3Module } from './s3/s3.module';
     OtpModule,
     GatewayModule,
     ChatModule,
-    S3Module,
+
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      exclude: ['/api/(.*)'],
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, OtpService, ChatService],
