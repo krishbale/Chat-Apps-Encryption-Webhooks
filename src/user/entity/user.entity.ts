@@ -1,3 +1,4 @@
+import { Chat } from 'src/chat/entity/chat.entity';
 import { OTP } from '../../otp/enitity/otp.entity';
 import {
   Column,
@@ -7,6 +8,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
+import { ChatBot } from 'src/webhooks/entity/bot.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -30,6 +32,9 @@ export class User {
 
   @OneToMany(() => OTP, (otp) => otp.user)
   otps: OTP[];
+
+  @OneToMany(() => ChatBot, (chatbot) => chatbot.users)
+  chatbot: ChatBot[];
 
   @Column('boolean', { default: false })
   isOnline: boolean;
