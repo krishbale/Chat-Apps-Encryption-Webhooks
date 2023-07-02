@@ -13,6 +13,7 @@ import { ChatService } from './chat/chat.service';
 import { ChatModule } from './chat/chat.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { WebHookModule } from './webhooks/webhook.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({ useFactory: () => ormConfig }),
@@ -21,6 +22,7 @@ import { join } from 'path';
     OtpModule,
     GatewayModule,
     ChatModule,
+    WebHookModule,
 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
