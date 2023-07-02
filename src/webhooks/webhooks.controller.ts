@@ -8,6 +8,7 @@ export class WebHookController {
 
   @Post('webhook')
   async handleWebhook(@Body() body: any) {
+    // console.log(body);
     // await this.dataSource.getRepository(ChatBot).save({
     //   message: body.message,
     // });
