@@ -1,6 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { WebHookService } from './webhooks.service';
-import { ChatBot } from './entity/bot.entity';
 
 @Controller()
 export class WebHookController {
