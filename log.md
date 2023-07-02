@@ -118,3 +118,17 @@ Task:
 3.Tested webhooks throught github and discord and created new template code for new projects
 4.Study and research on aws and azure for implementing webhooks.
 status ...github
+
+
+Day -10
+Sunday July 2 2023 10:15 am to 6:15pm
+Task:-
+1.Study and research about webhooks from documentation and youtube
+2.Created WEBHOOK which trigeered  from github and deployed it.
+3.Emitted the data on chat applications which get triggered  from github changes.
+4.hosted chat applicatoion on interneet using ngrok while connecting to webhooks app
+5.Research about webhooks in aws ,azure 
+
+Blockers....
+#Integration of AWS or Azure.
+Status ......Github
