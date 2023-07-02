@@ -14,7 +14,6 @@ import { IJWTPayload, TokenType } from 'src/auth/interfaces/auth.interface';
 import { JWTSECRET } from 'src/constant';
 import { OTP } from 'src/otp/enitity/otp.entity';
 import { generateOTP } from 'src/utils/otpgenerator/generatenewotp';
-import { log } from 'console';
 
 @Injectable()
 export class UserService {
@@ -36,11 +35,13 @@ export class UserService {
       const usercheck = await queryRunner.manager.getRepository(User).findOne({
         where: { email: loginuserDto.email },
       });
-      if (usercheck)
-        throw new BadRequestException({
+
+      if (usercheck) {
+        return new BadRequestException({
           success: false,
           message: 'Email already exists.',
         });
+      }
 
       const salt = await bcrypt.genSalt();
       const hashedpassword = await bcrypt.hash(loginuserDto.password, salt);
@@ -48,7 +49,7 @@ export class UserService {
       user.email = loginuserDto.email.toLowerCase();
       user.password = hashedpassword;
       await queryRunner.manager.getRepository(User).save(user);
-
+      console.log(user);
       const code = generateOTP(6);
 
       await queryRunner.manager
