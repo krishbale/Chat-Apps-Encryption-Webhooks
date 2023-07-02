@@ -5,7 +5,7 @@ export class WebHookService {
   constructor(private mygateway: MyGateway) {}
   handleWebhook(@Body() body: any) {
     this.mygateway.server.emit('azurebot', body);
-
+    ///commenitng out the return body
     return body;
   }
 }
