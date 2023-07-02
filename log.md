@@ -87,7 +87,7 @@ status .. github
 
 Day -7 
 
-Tuesday 27 June 2023  11:00am :7:00 pm
+Tuesday 28 June 2023  11:00am :7:00 pm
 Tasks.
 
 1.Went through the template  ultimate nest,  minio and  s3 advantages and alternative
@@ -96,3 +96,25 @@ and library such as   socketio-stream and file-upload.
 3.Also uses the postman to upload the file and which is eventually saved in public folder in backend which tools like multer.
 
 Status ...Github
+
+Day -8
+
+ Thursday  29 June 2023  10 :15 am: 6:15 pm 
+ Task:
+ 1.Uploaded message attachment using postman and emitted to receiver using sockets.
+ 2.Typeorm Transcation relation and repository docs
+ 3. implemented transaction in projects
+ 4.watched the file upload documenation video for amazon s3 services 
+ Status:
+ Github.....
+
+
+
+Day -9 
+
+Friday 30 June 2023 10: 15 am : 6 :15pm 
+Task:
+1.Study about Web hooks through online resources and 
+3.Tested webhooks throught github and discord and created new template code for new projects
+4.Study and research on aws and azure for implementing webhooks.
+status ...github

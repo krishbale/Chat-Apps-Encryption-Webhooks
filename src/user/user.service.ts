@@ -36,28 +36,25 @@ export class UserService {
       const usercheck = await queryRunner.manager.getRepository(User).findOne({
         where: { email: loginuserDto.email },
       });
-      // const isuser = await this.userRepository.findOne({
-      //   where: { email: loginuserDto.email },
-      // });
       if (usercheck)
         throw new BadRequestException({
           success: false,
           message: 'Email already exists.',
         });
-      const user = new User();
 
       const salt = await bcrypt.genSalt();
-      loginuserDto.password = await bcrypt.hash(loginuserDto.password, salt);
-
-      await queryRunner.manager.getRepository(User).save(loginuserDto);
+      const hashedpassword = await bcrypt.hash(loginuserDto.password, salt);
+      const user = new User();
+      user.email = loginuserDto.email.toLowerCase();
+      user.password = hashedpassword;
+      await queryRunner.manager.getRepository(User).save(user);
 
       const code = generateOTP(6);
 
-      const otp = await queryRunner.manager
+      await queryRunner.manager
         .getRepository(OTP)
         .save({ code, user_id: user.id, otp_type: OTPType.EMAIL_VERIFICATION });
 
-      console.log(otp);
       const text = `${code} is your verification code`;
       sendmail(user.email, text);
 
@@ -68,7 +65,7 @@ export class UserService {
         text,
       };
     } catch (e) {
-      queryRunner.rollbackTransaction();
+      await queryRunner.rollbackTransaction();
     } finally {
       await queryRunner.release();
     }
