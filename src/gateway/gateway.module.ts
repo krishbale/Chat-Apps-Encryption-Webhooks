@@ -4,6 +4,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from 'src/user/user.module';
 import { JWTSECRET } from 'src/constant';
 import { ChatModule } from 'src/chat/chat.module';
+import { WebHookModule } from 'src/webhooks/webhook.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -13,6 +15,7 @@ import { ChatModule } from 'src/chat/chat.module';
     }),
     UserModule,
     ChatModule,
+    HttpModule,
   ],
   providers: [MyGateway],
   controllers: [],

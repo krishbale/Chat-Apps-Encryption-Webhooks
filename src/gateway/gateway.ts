@@ -1,9 +1,4 @@
-import {
-  UsePipes,
-  ValidationPipe,
-  UseFilters,
-  UseInterceptors,
-} from '@nestjs/common';
+import { UsePipes, ValidationPipe, UseFilters } from '@nestjs/common';
 import fs from 'fs';
 import {
   ConnectedSocket,
@@ -23,6 +18,7 @@ import { JwtService } from '@nestjs/jwt';
 import { JWTSECRET } from 'src/constant';
 import { User } from 'src/user/entity/user.entity';
 import { ChatService } from 'src/chat/chat.service';
+import { HttpService } from '@nestjs/axios';
 
 @WebSocketGateway({
   cors: {
@@ -40,6 +36,7 @@ export class MyGateway
     private userService: UserService,
     private jwtService: JwtService,
     private chatService: ChatService,
+    private readonly httpService: HttpService,
   ) {}
   afterInit(server: Server) {
     console.log(server, 'Init');
@@ -188,12 +185,17 @@ export class MyGateway
     console.log(file);
   }
 
-  //for chatbot
-  // @SubscribeMessage('chatbot')
-  // handleChatbot(
-  //   @MessageBody() message: any,
-  //   @ConnectedSocket() socket: Socket,
-  // ) {
-  
-  // }
+  // for chatbot
+  @SubscribeMessage('chatbot')
+  async handleChatbot(
+    @MessageBody() message: any,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    const response = await this.httpService.axiosRef.post(
+      'https://sore-teal-dibbler-fez.cyclic.app/chatbot',
+    );
+    this.server.emit('azurebot', message);
+
+    //   await this.webhookservice.handleChatbot(message);
+  }
 }
