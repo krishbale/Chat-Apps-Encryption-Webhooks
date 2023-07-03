@@ -101,12 +101,12 @@ export class MyGateway
     this.server.emit('room', {
       sender: Socket.data.userId,
       message: message.message,
-      group_id: message.group_id,
+      group_id: message.to,
     });
     await this.chatService.creategroupchat({
       message: message.message,
       sender_id: Socket.data.userId,
-      group_id: message.group_id,
+      group_id: message.to,
     });
   }
 
@@ -187,4 +187,13 @@ export class MyGateway
     this.server.emit('file', file);
     console.log(file);
   }
+
+  //for chatbot
+  // @SubscribeMessage('chatbot')
+  // handleChatbot(
+  //   @MessageBody() message: any,
+  //   @ConnectedSocket() socket: Socket,
+  // ) {
+  
+  // }
 }

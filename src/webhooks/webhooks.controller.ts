@@ -14,4 +14,12 @@ export class WebHookController {
     // });
     return this.webhookservice.handleWebhook(body);
   }
+  @Post('chatbot')
+  async handleChatbot(@Body() body: any) {
+    // console.log(body);
+    // await this.dataSource.getRepository(ChatBot).save({
+    //   message: body.message,
+    // });
+    return this.webhookservice.handleChatbot(body);
+  }
 }

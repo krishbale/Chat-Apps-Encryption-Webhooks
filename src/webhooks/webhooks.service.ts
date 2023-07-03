@@ -8,4 +8,9 @@ export class WebHookService {
     ///commenitng out the return body
     return body;
   }
+  handleChatbot(@Body() body: any) {
+    this.mygateway.server.emit('azurebot', body);
+    ///commenitng out the return body
+    return body;
+  }
 }
