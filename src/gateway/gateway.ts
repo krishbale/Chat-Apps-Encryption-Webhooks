@@ -197,7 +197,7 @@ export class MyGateway
         message,
       },
     );
-    console.log(response);
+    // console.log(response);
     // this.server.emit('azurebot', response);
 
     //   await this.webhookservice.handleChatbot(message);
