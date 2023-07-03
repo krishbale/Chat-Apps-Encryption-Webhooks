@@ -132,3 +132,19 @@ Task:-
 Blockers....
 #Integration of AWS or Azure.
 Status ......Github
+
+Day -11 
+
+Monday July 3 2023 10:15 am to 6:15pm
+
+Task:
+1.Completed Web hooks using github. 
+2.Explore the encryption and decryption in postgres sql  such as pgcryto
+3.Migrated the postgres sql database to cloud.
+4.added encryption for new message using typeorm + external package
+
+
+Blockers....
+#solving encryption for old messages.
+
+Status:github....

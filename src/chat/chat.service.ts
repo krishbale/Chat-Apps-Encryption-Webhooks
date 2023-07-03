@@ -8,12 +8,13 @@ import { ChatReply } from './entity/chatreply.entity';
 export class ChatService {
   constructor(private readonly dataSource: DataSource) {}
   async createchat(@Body() message: any) {
-    return await this.dataSource.getRepository(Chat).save({
-      message: message.message,
-      sender_id: message.sender_id,
-      receiver_id: message.receiver_id,
-      file: message.file,
-    });
+    const chat = new Chat();
+    chat.message = message.message;
+    chat.sender_id = message.sender_id;
+    chat.receiver_id = message.receiver_id;
+    chat.file = message.file;
+    console.log(chat);
+    return await this.dataSource.getRepository(Chat).save(chat);
   }
   async creategroupchat(@Body() message: any) {
     return await this.dataSource.getRepository(GroupChat).save({
@@ -35,6 +36,17 @@ export class ChatService {
       from: reply.from,
     });
   }
+
+  async updateoldchatmessage(@Body() message: any) {
+    const chatRepository = this.dataSource.getRepository(Chat);
+    //find message by 
+    const chat = await chatRepository.findOne(message.id);
+    if (chat) {
+      chat.message = message.message;
+      return await chatRepository.save(chat);
+    } else {
+      throw new Error('Chat not found');
+    }
 
   // async savefile(id: string, file: Express.Multer.File) {
   //   const chatRepository = this.dataSource.getRepository(Chat);

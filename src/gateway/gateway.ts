@@ -119,6 +119,7 @@ export class MyGateway
       sender_id: socket.data.userId,
       receiver_id: message.to,
     });
+
     //storing message in database
     this.server.to(message.to).emit('personal', {
       sender: socket.data.userId,

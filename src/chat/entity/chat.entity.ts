@@ -1,18 +1,27 @@
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
 import { ChatReply } from './chatreply.entity';
+import { EncryptionTransformer } from 'typeorm-encrypted';
+import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
 
 @Entity({ name: 'chat' })
 export class Chat {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true })
+  @Column({
+    type: 'varchar',
+    nullable: true,
+    transformer: new EncryptionTransformer(MyEncryptionTransformerConfig),
+  })
   message: string;
 
   @Column({ nullable: true })
@@ -29,4 +38,6 @@ export class Chat {
 
   @OneToMany(() => ChatReply, (chatreply) => chatreply.chat)
   chatreply: Chat[];
+
+  //listeners
 }
