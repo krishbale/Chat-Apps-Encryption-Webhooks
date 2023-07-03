@@ -193,8 +193,12 @@ export class MyGateway
   ) {
     const response = await this.httpService.axiosRef.post(
       'https://sore-teal-dibbler-fez.cyclic.app/chatbot',
+      {
+        message,
+      },
     );
-    this.server.emit('azurebot', message);
+    console.log(response);
+    // this.server.emit('azurebot', response);
 
     //   await this.webhookservice.handleChatbot(message);
   }
