@@ -148,3 +148,14 @@ Blockers....
 #solving encryption for old messages.
 
 Status:github....
+day -12
+Tuesday July 4 2023 10:15 to 6:15pm
+
+Task:
+1.Study and research  encryptions and decryption  pgcypto 
+2.created  custom transformer for encryptions and decryption using crypto package from node
+for encrypting columns using AES algorithms
+
+Blockers....invalid initial vectore error during decryption process.
+
+Status .Github
