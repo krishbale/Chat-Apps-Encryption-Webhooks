@@ -39,7 +39,7 @@ export class ChatService {
 
   async updateoldchatmessage(@Body() message: any) {
     const chatRepository = this.dataSource.getRepository(Chat);
-    //find message by 
+    //find message by
     const chat = await chatRepository.findOne(message.id);
     if (chat) {
       chat.message = message.message;
@@ -48,16 +48,17 @@ export class ChatService {
       throw new Error('Chat not found');
     }
 
-  // async savefile(id: string, file: Express.Multer.File) {
-  //   const chatRepository = this.dataSource.getRepository(Chat);
+    // async savefile(id: string, file: Express.Multer.File) {
+    //   const chatRepository = this.dataSource.getRepository(Chat);
 
-  //   const chat = await chatRepository.findOne(id);
+    //   const chat = await chatRepository.findOne(id);
 
-  //   if (chat) {
-  //     chat.file = file;
-  //     return await chatRepository.save(chat);
-  //   } else {
-  //     throw new Error('Chat not found');
-  //   }
-  // }
+    //   if (chat) {
+    //     chat.file = file;
+    //     return await chatRepository.save(chat);
+    //   } else {
+    //     throw new Error('Chat not found');
+    //   }
+    // }
+  }
 }

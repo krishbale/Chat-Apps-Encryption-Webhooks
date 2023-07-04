@@ -19,7 +19,6 @@ export const DATABASE: {
 };
 
 export const JWTSECRET: string = process.env.JWT_SECRET;
-
 export const SMTP: {
   host: string;
   port: number;
