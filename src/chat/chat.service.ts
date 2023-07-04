@@ -13,7 +13,6 @@ export class ChatService {
     chat.sender_id = message.sender_id;
     chat.receiver_id = message.receiver_id;
     chat.file = message.file;
-    console.log(chat);
     return await this.dataSource.getRepository(Chat).save(chat);
   }
   async creategroupchat(@Body() message: any) {
