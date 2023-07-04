@@ -21,6 +21,8 @@ export class Chat {
     type: 'varchar',
     nullable: true,
     transformer: new EncryptionTransformer(MyEncryptionTransformerConfig),
+
+    // transformer: new EncryptionTransformer(MyEncryptionTransformerConfig),
   })
   message: string;
 
