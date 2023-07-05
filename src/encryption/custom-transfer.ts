@@ -2,7 +2,7 @@ import { ValueTransformer } from 'typeorm';
 import * as crypto from 'crypto';
 import { EncryptionOptions } from './encryptions.option';
 
-const algorithm = 'aes-256-cbc';
+const algorithm = 'aes-256-ctr';
 export class MyEncryptionTransformer implements ValueTransformer {
   constructor(private options: EncryptionOptions) {}
 
@@ -14,7 +14,7 @@ export class MyEncryptionTransformer implements ValueTransformer {
       algorithm, // algorithm
       key, // key
       iv,
-    ); // Use an empty Buffer as IV for ECB mode
+    ); // Use an empty Buffer
     let encryptedData = cipher.update(value, 'utf-8', 'base64');
     encryptedData += cipher.final('base64');
     const encryptedValueWithIV = iv.toString('base64') + encryptedData; // Prepend IV to the encrypted value
