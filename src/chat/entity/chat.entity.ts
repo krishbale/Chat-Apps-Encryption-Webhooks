@@ -11,7 +11,7 @@ import {
 import { ChatReply } from './chatreply.entity';
 import { EncryptionTransformer } from 'typeorm-encrypted';
 import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
-import { MyEncryptionTransformer } from './custom-transfer';
+import { MyEncryptionTransformer } from '../../encryption/custom-transfer';
 
 @Entity({ name: 'chat' })
 export class Chat {
