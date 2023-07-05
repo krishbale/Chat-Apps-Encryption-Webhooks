@@ -1,15 +1,17 @@
 import { ValueTransformer } from 'typeorm';
 import * as crypto from 'crypto';
+import { EncryptionOptions } from './encryptions.option';
 
 const algorithm = 'aes-256-ecb';
-const securityKey = 'e41c966f21f9e1577802463f8924e6a3';
-
 export class MyEncryptionTransformer implements ValueTransformer {
+  constructor(private options: EncryptionOptions) {}
+
   to(value: string): string {
-    console.log(value);
+    const { key } = this.options;
+    console.log(algorithm, key);
     const cipher = crypto.createCipheriv(
-      algorithm,
-      securityKey,
+      algorithm, // algorithm
+      key, // key
       Buffer.alloc(0),
     ); // Use an empty Buffer as IV for ECB mode
     let encryptedData = cipher.update(value, 'utf-8', 'base64');
@@ -18,12 +20,13 @@ export class MyEncryptionTransformer implements ValueTransformer {
   }
 
   from(value: string): string {
-    console.log(value);
+    const { key } = this.options;
+
     const decipher = crypto.createDecipheriv(
-      algorithm,
-      securityKey,
+      algorithm, // algorithm
+      key, // key
       Buffer.alloc(0),
-    ); // Use an empty Buffer as IV for ECB mode
+    ); // Use an empty Buffer as IV
     let decryptedData = decipher.update(value, 'base64', 'utf-8');
     decryptedData += decipher.final('utf-8');
     return decryptedData;

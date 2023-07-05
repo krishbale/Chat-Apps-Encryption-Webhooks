@@ -22,10 +22,10 @@ export class ChatService {
       group_id: message.group_id,
     });
   }
-  async findchatbyid(@Body() messageid: any) {
+  async findchatbyid(id: string) {
     return await this.dataSource
       .getRepository(Chat)
-      .findOne({ where: { id: messageid.id } });
+      .findOne({ where: { id: id } });
   }
   async createreply(@Body() reply: any) {
     return await this.dataSource.getRepository(ChatReply).save({

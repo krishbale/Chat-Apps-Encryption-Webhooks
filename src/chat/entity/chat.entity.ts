@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 
 import { ChatReply } from './chatreply.entity';
-import { EncryptionTransformer } from 'typeorm-encrypted';
 import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
 import { MyEncryptionTransformer } from '../../encryption/custom-transfer';
 
@@ -21,9 +20,7 @@ export class Chat {
   @Column({
     type: 'varchar',
     nullable: true,
-    // transformer: new EncryptionTransformer(MyEncryptionTransformerConfig),
-    transformer: new MyEncryptionTransformer(),
-    // transformer: new EncryptionTransformer(MyEncryptionTransformerConfig),
+    transformer: new MyEncryptionTransformer(MyEncryptionTransformerConfig),
   })
   message: string;
 

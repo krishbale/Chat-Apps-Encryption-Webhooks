@@ -57,7 +57,6 @@
     "socket.io-stream": "^0.9.1",
     "socketio-file-upload": "^0.7.3",
     "typeorm": "^0.3.16",
-    "typeorm-encrypted": "^0.8.0",
     "typeorm-encrypted-column": "^0.0.4"
   },
   "devDependencies": {

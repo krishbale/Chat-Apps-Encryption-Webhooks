@@ -19,6 +19,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { storagefile } from 'src/utils/storge/config';
 import { MyGateway } from 'src/gateway/gateway';
 import { Chat } from 'src/chat/entity/chat.entity';
+import { use } from 'passport';
 @Controller('profile')
 export class ProfileController {
   constructor(
@@ -32,13 +33,21 @@ export class ProfileController {
   profile(@GetUser() user: User) {
     return this.profileservice.profile(user);
   }
-  @Post('changepassword')
+
+  @Post('/changepassword')
   @UseGuards(JWTAUTHGuard)
   changepassword(
     @GetUser() User: User,
     @Body() changepassworddth: changepasswordDto,
   ) {
     return this.profileservice.changepassword(User, changepassworddth);
+  }
+
+  @UseGuards(JWTAUTHGuard)
+  @Get('/chat/:id')
+  async getchat(@Param('id', new ParseUUIDPipe()) id: any) {
+    console.log(id);
+    return this.chatserice.findchatbyid(id);
   }
 
   @UseGuards(JWTAUTHGuard)
