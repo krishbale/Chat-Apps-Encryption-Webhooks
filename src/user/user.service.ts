@@ -78,7 +78,7 @@ export class UserService {
     };
 
     const access_token = this.jwtService.sign(access_token_payload, {
-      expiresIn: '30m',
+      expiresIn: '365d',
       secret: JWTSECRET,
     });
 

@@ -1,8 +1,10 @@
 import { Body, Injectable, Post, Req, UploadedFile } from '@nestjs/common';
 import { Chat } from './entity/chat.entity';
-import { DataSource } from 'typeorm';
+import { DataSource, getRepository } from 'typeorm';
 import { GroupChat } from './entity/group.chat.entity';
 import { ChatReply } from './entity/chatreply.entity';
+import { MyEncryptionTransformer } from 'src/encryption/custom-transfer';
+import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
 
 @Injectable()
 export class ChatService {
@@ -36,28 +38,45 @@ export class ChatService {
     });
   }
 
-  async updateoldchatmessage(@Body() message: any) {
-    const chatRepository = this.dataSource.getRepository(Chat);
-    //find message by
-    const chat = await chatRepository.findOne(message.id);
-    if (chat) {
-      chat.message = message.message;
-      return await chatRepository.save(chat);
-    } else {
-      throw new Error('Chat not found');
+  async encrypt() {
+    const encryptionTransformer = new MyEncryptionTransformer(
+      MyEncryptionTransformerConfig,
+    );
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      const chats = await queryRunner.manager.getRepository(Chat).find({});
+      for (const chat of chats) {
+        const newEncryptedMessage = encryptionTransformer.to(chat.message);
+        chat.message = newEncryptedMessage;
+        console.log(chats);
+        await this.dataSource.getRepository(Chat).save(chat);
+      }
+    } catch (err) {
+      console.log(err);
     }
 
-    // async savefile(id: string, file: Express.Multer.File) {
-    //   const chatRepository = this.dataSource.getRepository(Chat);
+    return 'chat  encrypted successfully.';
+  }
+  async decrypt() {
+    const encryptionTransformer = new MyEncryptionTransformer(
+      MyEncryptionTransformerConfig,
+    );
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      const chats = await queryRunner.manager.getRepository(Chat).find({});
+      for (const chat of chats) {
+        const newEncryptedMessage = encryptionTransformer.from(chat.message);
+        chat.message = newEncryptedMessage;
+        await this.dataSource.getRepository(Chat).save(chat);
+      }
+    } catch (err) {
+      console.log(err);
+    }
 
-    //   const chat = await chatRepository.findOne(id);
-
-    //   if (chat) {
-    //     chat.file = file;
-    //     return await chatRepository.save(chat);
-    //   } else {
-    //     throw new Error('Chat not found');
-    //   }
-    // }
+    return 'chat  decrypted  successfully.';
   }
 }

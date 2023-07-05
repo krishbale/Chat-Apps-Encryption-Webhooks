@@ -10,7 +10,7 @@ import { HttpModule } from '@nestjs/axios';
   imports: [
     JwtModule.register({
       secret: JWTSECRET,
-      signOptions: { expiresIn: '300000min' },
+      signOptions: { expiresIn: '365d' },
     }),
     UserModule,
     ChatModule,

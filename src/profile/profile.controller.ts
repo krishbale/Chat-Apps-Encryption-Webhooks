@@ -34,6 +34,15 @@ export class ProfileController {
     return this.profileservice.profile(user);
   }
 
+  @Get('/encrypt')
+  async encrypt() {
+    return this.chatserice.encrypt();
+  }
+  @Get('/decrypt')
+  async decrypt() {
+    return this.chatserice.decrypt();
+  }
+
   @Post('/changepassword')
   @UseGuards(JWTAUTHGuard)
   changepassword(

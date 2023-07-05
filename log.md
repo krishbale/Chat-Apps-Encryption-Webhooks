@@ -159,3 +159,9 @@ for encrypting columns using AES algorithms
 Blockers....invalid initial vectore error during decryption process.
 
 Status .Github
+
+day -13
+Wednesday july - 5 2023 10:30 to 6:30pm
+
+Task;
+1.
