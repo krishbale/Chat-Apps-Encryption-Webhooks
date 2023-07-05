@@ -8,7 +8,6 @@ export class MyEncryptionTransformer implements ValueTransformer {
 
   to(value: string): string {
     const { key } = this.options;
-    console.log(algorithm, key);
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv(
       algorithm, // algorithm

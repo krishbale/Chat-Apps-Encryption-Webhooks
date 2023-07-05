@@ -161,7 +161,13 @@ Blockers....invalid initial vectore error during decryption process.
 Status .Github
 
 day -13
+
 Wednesday july - 5 2023 10:30 to 6:30pm
 
 Task;
-1.
+
+1.Added Encryption system which doesnot use initial vector i.e ecb  status github.tag
+2.Updated Encryption system which use initial vector i.e. ebc and ctr .status github.
+3.Created custome function api for old unencrypted message  and encrypted message ..
+
+..Status github
