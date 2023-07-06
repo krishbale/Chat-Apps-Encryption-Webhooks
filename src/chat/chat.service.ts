@@ -52,7 +52,7 @@ export class ChatService {
         const newEncryptedMessage = encryptionTransformer.to(chat.message);
         chat.message = newEncryptedMessage;
         await queryRunner.manager.getRepository(Chat).save(chat);
-        return `Encrypitn meeage:${li++}`;
+        console.log`Encrypitn meeage:${li++}`;
       }
       await queryRunner.commitTransaction();
     } catch (err) {
@@ -78,7 +78,7 @@ export class ChatService {
         const newEncryptedMessage = encryptionTransformer.from(chat.message);
         chat.message = newEncryptedMessage;
         await queryRunner.manager.getRepository(Chat).save(chat);
-        return `Decrypitn meeage:${li++}`;
+        console.log`Decrypitn meeage:${li++}`;
       }
       await queryRunner.commitTransaction();
     } catch (err) {
@@ -89,5 +89,11 @@ export class ChatService {
     }
 
     return 'chat  decrypted  successfully.';
+  }
+
+  async hello() {
+    const message = this.dataSource.query('SELECT * FROM chat');
+
+    return message;
   }
 }

@@ -20,6 +20,7 @@ import { storagefile } from 'src/utils/storge/config';
 import { MyGateway } from 'src/gateway/gateway';
 import { Chat } from 'src/chat/entity/chat.entity';
 import { use } from 'passport';
+import { async } from 'rxjs';
 @Controller('profile')
 export class ProfileController {
   constructor(
@@ -37,6 +38,11 @@ export class ProfileController {
   @Get('/encrypt')
   async encrypt() {
     return this.chatserice.encrypt();
+  }
+
+  @Get('/hello')
+  async hello() {
+    return this.chatserice.hello();
   }
   @Get('/decrypt')
   async decrypt() {

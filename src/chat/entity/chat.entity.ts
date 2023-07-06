@@ -20,7 +20,7 @@ export class Chat {
   @Column({
     type: 'varchar',
     nullable: true,
-    // transformer: new MyEncryptionTransformer(MyEncryptionTransformerConfig),
+    transformer: new MyEncryptionTransformer(MyEncryptionTransformerConfig),
   })
   message: string;
 

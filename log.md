@@ -171,3 +171,11 @@ Task;
 3.Created custome function api for old unencrypted message  and encrypted message ..
 
 ..Status github
+
+day-14
+
+Thurstday July -6 2023 11:00 to 7:00pm
+Task:-
+1.Explored deeply on pgcrypto extensions and documentation on encryptions availble on psql.
+2.Created tested and analyzes  limitations on  sql queries to encrypte and decrypt postgresql column data using different algorithms availble on pgcrypto 
+3.Research on  json encryption and went through the concept of  end to end encryptions ,
