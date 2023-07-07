@@ -4,14 +4,18 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  Tree,
+  TreeChildren,
+  TreeParent,
 } from 'typeorm';
-
-import { ChatReply } from './chatreply.entity';
 import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
 import { MyEncryptionTransformer } from '../../encryption/custom-transfer';
-
+import { User } from 'src/user/entity/user.entity';
+@Tree('closure-table')
 @Entity({ name: 'chat' })
 export class Chat {
   @PrimaryGeneratedColumn('uuid')
@@ -27,6 +31,14 @@ export class Chat {
   @Column({ nullable: true })
   file?: string;
 
+  @ManyToOne(() => User, (user) => user.senderchat, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'sender_id' })
+  sender: User;
+
+  @ManyToOne(() => User, (user) => user.receiverchat, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'receiver_id' })
+  receiver: User;
+
   @Column('uuid', {})
   sender_id: string;
 
@@ -34,10 +46,11 @@ export class Chat {
   receiver_id: string;
 
   @CreateDateColumn()
-  createdat: Date;
+  createdAt: Date;
 
-  @OneToMany(() => ChatReply, (chatreply) => chatreply.chat)
-  chatreply: Chat[];
+  @TreeChildren()
+  repliedchat: Chat[];
 
-  //listeners
+  @TreeParent()
+  chatparent: Chat;
 }

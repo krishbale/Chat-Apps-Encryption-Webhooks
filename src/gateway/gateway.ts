@@ -19,6 +19,8 @@ import { JWTSECRET } from 'src/constant';
 import { User } from 'src/user/entity/user.entity';
 import { ChatService } from 'src/chat/chat.service';
 import { HttpService } from '@nestjs/axios';
+import { DataSource } from 'typeorm';
+import { Chat } from 'src/chat/entity/chat.entity';
 
 @WebSocketGateway({
   cors: {
@@ -33,6 +35,7 @@ export class MyGateway
   server: Server;
 
   constructor(
+    private readonly dataSource: DataSource,
     private userService: UserService,
     private jwtService: JwtService,
     private chatService: ChatService,
@@ -88,53 +91,56 @@ export class MyGateway
       `Client with connection id: ${socket.data.userId} disconnected`,
     );
   }
-  //for group chat
-  @SubscribeMessage('group-chat')
-  @UsePipes(new ValidationPipe())
-  async handleMessage(
-    @MessageBody() message: any,
-    @ConnectedSocket() Socket: Socket,
-  ) {
-    this.server.emit('room', {
-      sender: Socket.data.userId,
-      message: message.message,
-      group_id: message.to,
-    });
-    await this.chatService.creategroupchat({
-      message: message.message,
-      sender_id: Socket.data.userId,
-      group_id: message.to,
-    });
-  }
 
   //for private chat
-  @SubscribeMessage('private-chat')
+  @SubscribeMessage('lets-chat')
   @UsePipes(new ValidationPipe())
   async handlePrivateMessage(
     @MessageBody() message: any,
     @ConnectedSocket() socket: Socket,
   ) {
-    await this.chatService.createchat({
-      message: message.message,
-      sender_id: socket.data.userId,
-      receiver_id: message.to,
-    });
+    //for chat only if msgid is not present
+    if (!message.msgid) {
+      const chat = new Chat();
+      chat.message = message.message;
+      chat.sender_id = socket.data.userId;
+      chat.receiver_id = message.to;
+      const response = await this.dataSource.getRepository(Chat).save(chat);
 
-    //storing message in database
-    this.server.to(message.to).emit('personal', {
-      sender: socket.data.userId,
-      message: message.message,
-      receiver: message.to,
-    });
+      this.server.to(message.to).emit('gets-chat', {
+        sender: response.sender_id,
+        message: response.message,
+        receiver: response.receiver_id,
+        msgid: response.id,
+      });
+    } else {
+      //for reply if msgid is present
+      const chat = await this.chatService.findchatbyid(message.msgid);
+      const response = await this.chatService.createchat({
+        message: message.message,
+        sender_id: socket.data.userId,
+        receiver_id: message.to,
+        chatparent: chat,
+      });
+      this.server.to(message.to).emit('gets-chat', {
+        sender: socket.data.userId,
+        message: message.message,
+        receiver: message.to,
+        msgid: response.id,
+      });
+    }
   }
+
   //for joinging room
   @SubscribeMessage('join-room')
   onJoin(@MessageBody() MessageDto: MessageDto) {
-    ///joing room with room id as  to
     this.server.socketsJoin(MessageDto.to);
     {
-      //
       console.log('new room joined ', MessageDto.to);
+      this.server.to(MessageDto.to).emit('notify', {
+        message: 'new user joined',
+        time: new Date().toString(),
+      });
     }
   }
 
@@ -151,39 +157,6 @@ export class MyGateway
         time: new Date().toString(),
       });
     }
-  }
-
-  @SubscribeMessage('reply')
-  async OnReply(@MessageBody() reply: any, @ConnectedSocket() socket: Socket) {
-    //if reply is not for same user and message exist in database
-    if (reply.to && reply.to !== socket.data.userId) {
-      const parentmessage = await this.chatService.findchatbyid(reply.msgid);
-      if (!parentmessage) {
-        this.server.to(reply.from).emit('notify', {
-          message: 'message not found',
-        });
-      }
-      //emmmiting reply to user
-      this.server.to(reply.to).emit('notify', {
-        msgid: reply.msgid,
-        reply: reply.reply,
-        from: socket.data.userId,
-      });
-
-      //storing reply in database
-      await this.chatService.createreply({
-        reply: reply.reply,
-        msgid: reply.msgid,
-        from: socket.data.userId,
-        to: reply.to,
-      });
-    }
-  }
-  // uploadin file in socket using emit method
-  @SubscribeMessage('upload')
-  handleUpload(@MessageBody() file: any) {
-    this.server.emit('file', file);
-    console.log(file);
   }
 
   // for chatbot

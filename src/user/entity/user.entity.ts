@@ -8,7 +8,6 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
-import { ChatBot } from 'src/webhooks/entity/bot.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -33,8 +32,11 @@ export class User {
   @OneToMany(() => OTP, (otp) => otp.user)
   otps: OTP[];
 
-  @OneToMany(() => ChatBot, (chatbot) => chatbot.users)
-  chatbot: ChatBot[];
+  @OneToMany(() => Chat, (chat) => chat.sender)
+  senderchat: Chat[];
+
+  @OneToMany(() => Chat, (chat) => chat.receiver)
+  receiverchat: Chat[];
 
   @Column('boolean', { default: false })
   isOnline: boolean;

@@ -5,9 +5,12 @@ import { UserModule } from 'src/user/user.module';
 import { JWTSECRET } from 'src/constant';
 import { ChatModule } from 'src/chat/chat.module';
 import { HttpModule } from '@nestjs/axios';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Chat } from 'src/chat/entity/chat.entity';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Chat]),
     JwtModule.register({
       secret: JWTSECRET,
       signOptions: { expiresIn: '365d' },

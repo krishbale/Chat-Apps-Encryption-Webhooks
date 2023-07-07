@@ -179,3 +179,16 @@ Task:-
 1.Explored deeply on pgcrypto extensions and documentation on encryptions availble on psql.
 2.Created tested and analyzes  limitations on  sql queries to encrypte and decrypt postgresql column data using different algorithms availble on pgcrypto 
 3.Research on  json encryption and went through the concept of  end to end encryptions ,
+
+day -15
+
+Friday July 7 2023 10:00am to 6:00 pm 
+Task :-
+1.Write the code for RSA Encryption on frontend and backend.
+2.Research on feasibility of end to end encryption on API 
+4.Disadvantages and advantages of using assymmetirc algorithms.
+3.Documentations exploration on protobuff.
+
+Blockers > Unable to use node package on the react application while doing RSA for frontend.
+
+Status:GIthub ..........
