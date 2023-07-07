@@ -1,4 +1,9 @@
-import { BadRequestException, Body, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { changepasswordDto } from './dto/changepassword.dto';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,6 +11,8 @@ import { User } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
 import { GetUser } from 'src/decorators/getuser.decorator';
 import { DataSource } from 'typeorm';
+import { NODERSA } from 'node-rsa';
+import { resDecrypt, rsakeys } from 'src/encryption/rsakey';
 @Injectable()
 export class ProfileService {
   @InjectRepository(User)
@@ -50,5 +57,19 @@ export class ProfileService {
     );
 
     return { success: true, message: 'password changed successfully' };
+  }
+  dbsecretkey = '';
+
+  getkeys(res: any) {
+    this.dbsecretkey = rsakeys().privatekey;
+    res.status(HttpStatus.OK).json({
+      success: true,
+      package: rsakeys().publickey,
+    });
+  }
+  sendmessagewithrsa(body: any) {
+    console.log(body);
+    // console.log(resDecrypt(this.dbsecretkey, body.message));
+    return { success: true, message: 'message sent' };
   }
 }

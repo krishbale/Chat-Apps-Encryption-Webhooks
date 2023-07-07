@@ -5,6 +5,7 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Res,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -18,9 +19,6 @@ import { ChatService } from 'src/chat/chat.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { storagefile } from 'src/utils/storge/config';
 import { MyGateway } from 'src/gateway/gateway';
-import { Chat } from 'src/chat/entity/chat.entity';
-import { use } from 'passport';
-import { async } from 'rxjs';
 @Controller('profile')
 export class ProfileController {
   constructor(
@@ -47,6 +45,15 @@ export class ProfileController {
   @Get('/decrypt')
   async decrypt() {
     return this.chatserice.decrypt();
+  }
+
+  @Get('/getkeys')
+  async getkeys(@Res() res: any) {
+    return this.profileservice.getkeys(res);
+  }
+  @Post('/sendmessagewithrsa')
+  async sendmessagewithrsa(@Body() body: any) {
+    return this.profileservice.sendmessagewithrsa(body);
   }
 
   @Post('/changepassword')
