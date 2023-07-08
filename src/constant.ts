@@ -35,3 +35,4 @@ export const SMTP: {
 };
 
 export const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
+export const RSA_ENCRYPTION_PASSPHRASE = process.env.RSA_ENCRYPTION_PASSPHRASE;

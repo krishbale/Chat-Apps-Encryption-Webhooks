@@ -21,6 +21,7 @@ import { ChatService } from 'src/chat/chat.service';
 import { HttpService } from '@nestjs/axios';
 import { DataSource } from 'typeorm';
 import { Chat } from 'src/chat/entity/chat.entity';
+import { Room } from 'src/room/entities/room.entity';
 
 @WebSocketGateway({
   cors: {
@@ -71,7 +72,7 @@ export class MyGateway
         await this.userService.updateUserStatus(user.id, true);
         socket.emit('user-connected'),
           {
-            userId: socket.data.userId,
+            userid: user.id.toString(),
           };
         console.log(`Client with user  id: ${user.id.toString()} connected `);
       }
@@ -92,7 +93,7 @@ export class MyGateway
     );
   }
 
-  //for private chat
+  //for private chat and reply
   @SubscribeMessage('lets-chat')
   @UsePipes(new ValidationPipe())
   async handlePrivateMessage(
@@ -142,6 +143,19 @@ export class MyGateway
         time: new Date().toString(),
       });
     }
+  }
+
+  @SubscribeMessage('create-room')
+  async onCreateRoom(
+    @MessageBody() message: any,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    const room = await this.dataSource.getRepository(Room).save(message);
+    this.server.to(socket.data.userId).emit('notify', {
+      message: 'new room created',
+      room: room,
+      time: new Date().toString(),
+    });
   }
 
   //fo mentioning user

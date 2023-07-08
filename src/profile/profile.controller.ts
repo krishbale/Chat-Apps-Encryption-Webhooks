@@ -48,8 +48,8 @@ export class ProfileController {
   }
 
   @Get('/getkeys')
-  async getkeys(@Res() res: any) {
-    return this.profileservice.getkeys(res);
+  async getkeys() {
+    return this.profileservice.getkeys();
   }
   @Post('/sendmessagewithrsa')
   async sendmessagewithrsa(@Body() body: any) {

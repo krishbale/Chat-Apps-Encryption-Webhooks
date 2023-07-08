@@ -11,8 +11,8 @@ import { User } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
 import { GetUser } from 'src/decorators/getuser.decorator';
 import { DataSource } from 'typeorm';
-import { NODERSA } from 'node-rsa';
-import { resDecrypt, rsakeys } from 'src/encryption/rsakey';
+import { generatersa } from 'src/encryption/rsakeyparigeneration';
+import { decryptMessage } from 'src/encryption/rsaencyption';
 @Injectable()
 export class ProfileService {
   @InjectRepository(User)
@@ -58,18 +58,16 @@ export class ProfileService {
 
     return { success: true, message: 'password changed successfully' };
   }
-  dbsecretkey = '';
 
-  getkeys(res: any) {
-    this.dbsecretkey = rsakeys().privatekey;
-    res.status(HttpStatus.OK).json({
-      success: true,
-      package: rsakeys().publickey,
-    });
+  getkeys() {
+    return { package: generatersa().publickey };
   }
   sendmessagewithrsa(body: any) {
-    console.log(body);
-    // console.log(resDecrypt(this.dbsecretkey, body.message));
-    return { success: true, message: 'message sent' };
+    const message = decryptMessage(body.data);
+    return {
+      success: true,
+      message: 'Message decrypted successful',
+      decrypte: message,
+    };
   }
 }

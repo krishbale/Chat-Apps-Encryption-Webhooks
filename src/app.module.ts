@@ -14,6 +14,7 @@ import { ChatModule } from './chat/chat.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { WebHookModule } from './webhooks/webhook.module';
+import { RoomModule } from './room/room.module';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({ useFactory: () => ormConfig }),
@@ -23,11 +24,13 @@ import { WebHookModule } from './webhooks/webhook.module';
     GatewayModule,
     ChatModule,
     WebHookModule,
-
+    RoomModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       exclude: ['/api/(.*)'],
     }),
+
+    RoomModule,
   ],
   controllers: [AppController],
   providers: [AppService, OtpService, ChatService],
