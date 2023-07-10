@@ -1,5 +1,4 @@
 import { UsePipes, ValidationPipe, UseFilters } from '@nestjs/common';
-import fs from 'fs';
 import {
   ConnectedSocket,
   MessageBody,
@@ -10,6 +9,8 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
+import fs from 'fs';
+import { Message } from 'google-protobuf';
 import { Socket, Server } from 'socket.io';
 import { MessageDto } from './dto/Chat.message.dto';
 import { WsExceptionFilter } from './ws-exception.filter';
@@ -22,6 +23,7 @@ import { HttpService } from '@nestjs/axios';
 import { DataSource } from 'typeorm';
 import { Chat } from 'src/chat/entity/chat.entity';
 import { Room } from 'src/room/entities/room.entity';
+import { load } from 'protobufjs';
 
 @WebSocketGateway({
   cors: {
@@ -32,6 +34,8 @@ import { Room } from 'src/room/entities/room.entity';
 export class MyGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
+  private protobuffer: any;
+
   @WebSocketServer()
   server: Server;
 
@@ -41,7 +45,12 @@ export class MyGateway
     private jwtService: JwtService,
     private chatService: ChatService,
     private readonly httpService: HttpService,
-  ) {}
+  ) {
+    load('./src/gateway/chat.proto', (err, root) => {
+      if (err) throw err;
+      this.protobuffer = root.lookupType('userpackage.Chat');
+    });
+  }
   afterInit(server: Server) {
     console.log(server, 'Init');
   }
@@ -107,12 +116,14 @@ export class MyGateway
       chat.sender_id = socket.data.userId;
       chat.receiver_id = message.to;
       const response = await this.dataSource.getRepository(Chat).save(chat);
-
+      const payload = this.protobuffer.create(response);
+      const buffer = this.protobuffer.encode(payload).finish();
       this.server.to(message.to).emit('gets-chat', {
         sender: response.sender_id,
         message: response.message,
         receiver: response.receiver_id,
         msgid: response.id,
+        buffer: buffer,
       });
     } else {
       //for reply if msgid is present
@@ -138,6 +149,7 @@ export class MyGateway
     this.server.socketsJoin(MessageDto.to);
     {
       console.log('new room joined ', MessageDto.to);
+
       this.server.to(MessageDto.to).emit('notify', {
         message: 'new user joined',
         time: new Date().toString(),

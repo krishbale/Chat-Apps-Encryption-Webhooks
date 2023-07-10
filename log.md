@@ -192,3 +192,15 @@ Task :-
 Blockers > Unable to use node package on the react application while doing RSA for frontend.
 
 Status:GIthub ..........
+
+
+day -16 
+Sunday July -10  2023 10:00 am to 6:00 pm 
+Task:-
+1.Implemented rsa algorithms on both frontend(NEXTJS) and backend(NESTJS)
+2.Implemeted proto buffer on the backend to covert message into binary . 
+3.Research on converitng message to binary and vice versa ..
+
+Blockers. React or frontend system do not incorporate easily during implemtnation working on it.
+
+Status ..... GITHUB.

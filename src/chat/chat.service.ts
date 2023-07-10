@@ -3,6 +3,8 @@ import { Chat } from './entity/chat.entity';
 import { MyEncryptionTransformer } from 'src/encryption/custom-transfer';
 import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
 import { DataSource } from 'typeorm';
+import { load } from 'protobufjs';
+import { buffer } from 'stream/consumers';
 
 @Injectable()
 export class ChatService {
@@ -91,7 +93,7 @@ export class ChatService {
   }
 
   async hello() {
-    const message = this.dataSource.query('SELECT * FROM chat');
+    const message = await this.dataSource.query('SELECT * FROM chat');
 
     return message;
   }

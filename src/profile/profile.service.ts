@@ -4,6 +4,7 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
+import { decode } from 'google-protobuf';
 import { changepasswordDto } from './dto/changepassword.dto';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,10 +12,13 @@ import { User } from 'src/user/entity/user.entity';
 import { Repository } from 'typeorm';
 import { GetUser } from 'src/decorators/getuser.decorator';
 import { DataSource } from 'typeorm';
+import { load } from 'protobufjs';
 import { generatersa } from 'src/encryption/rsakeyparigeneration';
 import { decryptMessage } from 'src/encryption/rsaencyption';
 @Injectable()
 export class ProfileService {
+  private protobuffer: any;
+
   @InjectRepository(User)
   private userRepository: Repository<User>;
   private readonly dataSource: DataSource;
