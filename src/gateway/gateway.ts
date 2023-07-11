@@ -9,8 +9,6 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import fs from 'fs';
-import { Message } from 'google-protobuf';
 import { Socket, Server } from 'socket.io';
 import { MessageDto } from './dto/Chat.message.dto';
 import { WsExceptionFilter } from './ws-exception.filter';
@@ -116,14 +114,22 @@ export class MyGateway
       chat.sender_id = socket.data.userId;
       chat.receiver_id = message.to;
       const response = await this.dataSource.getRepository(Chat).save(chat);
+
+      const jsonData = JSON.stringify(response);
+    const base64Data = Buffer.from(jsonData).toString('base64');
+
       const payload = this.protobuffer.create(response);
       const buffer = this.protobuffer.encode(payload).finish();
+      const encode = this.protobuffer.decode(buffer);
+      // console.log(buffer);
+      console.log(encode);
       this.server.to(message.to).emit('gets-chat', {
         sender: response.sender_id,
         message: response.message,
         receiver: response.receiver_id,
         msgid: response.id,
         buffer: buffer,
+        buffer2: 
       });
     } else {
       //for reply if msgid is present

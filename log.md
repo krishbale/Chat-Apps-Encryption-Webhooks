@@ -195,6 +195,7 @@ Status:GIthub ..........
 
 
 day -16 
+
 Sunday July -10  2023 10:00 am to 6:00 pm 
 Task:-
 1.Implemented rsa algorithms on both frontend(NEXTJS) and backend(NESTJS)
@@ -204,3 +205,16 @@ Task:-
 Blockers. React or frontend system do not incorporate easily during implemtnation working on it.
 
 Status ..... GITHUB.
+  
+Day -17
+
+Monday July 11 2023 10:00am to 6:00pm
+Task:-
+1.Explorre the prodcution repo docs and socket docs.
+2.Uses the protobuffer to encode and decode message. 
+3.Tried to define the proto file and creating correct schemas for proto  file
+4.Tested binay message on frontend using socket
+
+ BLockers=> protofbuffers implementation on react didnot go easy again.
+
+ status ...local 

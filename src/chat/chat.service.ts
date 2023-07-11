@@ -3,12 +3,21 @@ import { Chat } from './entity/chat.entity';
 import { MyEncryptionTransformer } from 'src/encryption/custom-transfer';
 import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
 import { DataSource } from 'typeorm';
-import { load } from 'protobufjs';
-import { buffer } from 'stream/consumers';
+import { Message, load } from 'protobufjs';
+import { string } from 'joi';
 
 @Injectable()
 export class ChatService {
-  constructor(private readonly dataSource: DataSource) {}
+  private Message: any;
+  private MessageList: any;
+
+  constructor(private readonly dataSource: DataSource) {
+    load('./src/chat/chat.proto', (err, root) => {
+      if (err) throw err;
+      this.Message = root.lookupType('userpackage.Message');
+      this.MessageList = root.lookupType('userpackage.MessageList');
+    });
+  }
   async createchat(@Body() message: any) {
     const chat = new Chat();
     chat.message = message.message;
@@ -93,8 +102,20 @@ export class ChatService {
   }
 
   async hello() {
-    const message = await this.dataSource.query('SELECT * FROM chat');
+    const jsonData = await this.dataSource.query('SELECT * FROM chat');
+    const messageList = this.MessageList.create({
+      messages: jsonData.map((data) => this.Message.create(data)),
+    });
+    const buffer = this.MessageList.encode(messageList).finish();
 
-    return message;
+    const decodedMessageList = this.MessageList.decode(buffer);
+    const decodedData = this.MessageList.toObject(decodedMessageList, {
+      longs: String, // Convert longs to string format
+      enums: String, // Convert enums to string names
+      defaults: true, // Include default values
+      arrays: true, // Convert repeated fields to arrays
+      objects: true,
+    });
+    return decodedData;
   }
 }

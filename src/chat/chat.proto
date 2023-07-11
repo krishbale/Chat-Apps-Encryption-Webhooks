@@ -1,13 +1,28 @@
 syntax = "proto3";
 package userpackage;
+// import "google/protobuf/wrappers.proto";
+// import "google/protobuf/timestamp.proto";
 
-message Chat {
-string id = 1;
-string message = 2;
-string file = 3;
-string sender_id = 4;
-string receiver_id = 5;
-string createdAt = 6;
-string chatparentId = 7;
-}
+message Message {
+    string id = 1;
+    string message = 2;
+    string file = 3;
+    string senderid = 4;
+    string receiverid = 5;
+    string createdAt = 6;
+    string chatparentId = 7;
+
     
+
+}
+
+message MessageList {
+  repeated Message messages = 1;
+}
+        // "id": "9c3f3cc0-648d-480b-b78e-c54a7ea7ca34",
+        // "message": "Xluj1f5sD7unSzM2kzllIQ==Bud6IsVErxvCQqCnJVILjJnM20jXGfdgPqVCjromJk9xXzjHcg==",
+        // "file": null,
+        // "sender_id": "28d3683c-383b-407e-ae1a-f3ec2f6eda18",
+        // "receiver_id": "b4c7f9b4-5050-4391-b06f-54901e70ed4d",
+        // "createdAt": "2023-07-07T12:08:03.031Z",
+        // "chatparentId": null
