@@ -218,3 +218,14 @@ Task:-
  BLockers=> protofbuffers implementation on react didnot go easy again.
 
  status ...local 
+
+
+Day -18 
+
+Tuesday July 11 2023 10:00 am to 6 : 00 pm 
+Task:-
+1.Tested the api for authorization and workspaces 
+2.Detected unlimited otp request while doing forgetpassword .
+3.Review the workspaces and user authorization code .
+
+status local...
