@@ -220,7 +220,7 @@ Task:-
  status ...local 
 
 
-Day -18 
+Day -18 2
 
 Tuesday July 11 2023 10:00 am to 6 : 00 pm 
 Task:-
@@ -228,4 +228,16 @@ Task:-
 2.Detected unlimited otp request while doing forgetpassword .
 3.Review the workspaces and user authorization code .
 
-status local...
+status local...                     
+
+
+Day -19
+
+Wednesday 10:15am 6:15pm July 12 2023
+Tasks:
+#Tested api testing and review code 
+ 1.workspaces services 
+2.Role and permissions
+3.created project using  kanban template
+4.notification api
+5.activity log
