@@ -236,8 +236,18 @@ Day -19
 Wednesday 10:15am 6:15pm July 12 2023
 Tasks:
 #Tested api testing and review code 
+Using postman and lancemup website web devtools.
  1.workspaces services 
 2.Role and permissions
 3.created project using  kanban template
 4.notification api
 5.activity log
+
+
+Day -20
+Thurstday July-13-2023 Signing 10:30 am : signing off 6:30pm
+Task:-
+1.Created and intialized starter repo for foodburge,vendorio and graphql
+2.Went through the documentation of graphql vendor io and learned about foodbourge 
+3.Created Query and Mutations &  connected to postgres sql using nestjs and graphql
+ 
