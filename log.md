@@ -251,3 +251,15 @@ Task:-
 2.Went through the documentation of graphql vendor io and learned about foodbourge 
 3.Created Query and Mutations &  connected to postgres sql using nestjs and graphql
  
+ status :github. local
+
+
+ Day-21 
+
+ Friday July 14-2023 Signing in 10:00 am : signing off 6:00 pm
+ Task:-
+ 1.Continued working on graphql api 
+ 2.Tested graphql api in grapql playground
+ 3.went through vendure io custome pluggins builder docs
+ 4.Created custom graphql api from custome pluggin.
+ Status :Local 
