@@ -263,3 +263,23 @@ Task:-
  3.went through vendure io custome pluggins builder docs
  4.Created custom graphql api from custome pluggin.
  Status :Local 
+
+ Day -22 
+ Sunday July 16 2023 Signing in 10:30 am :signing off 6:30 pm 
+ 1.Explored the vendure io developers guide 
+ 2.Explored the multi vendure possibilites and documentation 
+ 3.Debugging the Graphql joining table between vendure entity and custom entity
+4.Run some  mutations and query from playground learned about authorization through 
+
+status :Github ......
+
+Day - 23
+
+Monday July 17 2023 signin 10:00 am : signing off 6:00pm 
+1.Created graphql query and mutations for register ,login and verify customer on vendure playground
+2.Created the custom user entity based on foodbourg in vendure 
+3.Explore the vendure io admin ui and tested roles permission channels mail services etc.
+
+Blockers.:Unable to use private propery from userservices while extending userservices from vendure for user validation .
+
+Status . Github .......

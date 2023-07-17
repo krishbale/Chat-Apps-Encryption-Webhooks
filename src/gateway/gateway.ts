@@ -129,7 +129,6 @@ export class MyGateway
         receiver: response.receiver_id,
         msgid: response.id,
         buffer: buffer,
-        buffer2: 
       });
     } else {
       //for reply if msgid is present
