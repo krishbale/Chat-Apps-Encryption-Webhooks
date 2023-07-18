@@ -283,3 +283,15 @@ Monday July 17 2023 signin 10:00 am : signing off 6:00pm
 Blockers.:Unable to use private propery from userservices while extending userservices from vendure for user validation .
 
 Status . Github .......
+
+Day -24
+
+Tuesday july 18 2023 signing in 10:00am : signing off 6:00pm
+Task==>
+==>1.created custom user entity 
+==>2.created custom userservice ,resolver
+==>3.generated dto by creating graphql schemas 
+==>4.created query and mutation to get users by email and create users and store it in database
+==>5.merge the repo with mergebranch and requested pull request for mergebranch .
+
+Status . Github.....
