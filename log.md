@@ -295,3 +295,23 @@ Task==>
 ==>5.merge the repo with mergebranch and requested pull request for mergebranch .
 
 Status . Github.....
+
+Day -25
+
+Wedenesday July 19 2023 Signing In 10:30am : Signing off 6:30 pm
+Task==>
+==>1.Tested the vendure io roles and permission query and mutations.
+===>2.Went throught multi-vendure code bases merge yesterday.
+===>3.Get insight on  the CRM model and structure as provided by Tarakanta sir.
+
+Status .postman 
+
+Day-26 
+
+July 20 2023,
+Thurstday , Signing IN 10:30am : 6:30pm
+Task--->
+------>1.Study and Research about CRM websites and tested their services.
+------>2.Draw simple entity for lead in ER Diagram,
+------>3.Discussion about requirement of CRM implementation. 
+......>Status @Saleforce.com & @Lucid Chart.
