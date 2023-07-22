@@ -315,3 +315,14 @@ Task--->
 ------>2.Draw simple entity for lead in ER Diagram,
 ------>3.Discussion about requirement of CRM implementation. 
 ......>Status @Saleforce.com & @Lucid Chart.
+
+Day-27
+
+July 21 2023,
+Friday , Signing in 10:30am ------> 6:30pm
+----------------Task-------------->
+---------->1.Tested the CRM software for husbspot 
+---------->2.Generated ER diagram based on hubspot CRM.
+---------->3.Colloborate together to create ER diagram based on Sales FOrce CRM.
+-------------Status---------------------------------
+-------------@.LUCID CHARTS---------------------------
