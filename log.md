@@ -326,3 +326,12 @@ Friday , Signing in 10:30am ------> 6:30pm
 ---------->3.Colloborate together to create ER diagram based on Sales FOrce CRM.
 -------------Status---------------------------------
 -------------@.LUCID CHARTS---------------------------
+
+Day-28
+July 23 2023,
+Sunday , signing in 10:30 am --- 6:30 pm 
+-------Task------->
+--->1.Discussion and research on CRM workflow and requiremnets 
+--->2.Created the activity diagram using reverse engineering from saleforce.com 
+--->3.created new repository and initialized the crud controllers and datasource configuration
+--->4.for ---> leads,opportunity,contact,accounts and added Tenzing for colloboration on github.
