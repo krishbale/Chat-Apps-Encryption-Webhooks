@@ -340,7 +340,7 @@ Day -29
 July 24, 2023,
 Monday 
 Signing in 10:30am ----6:30 pm
------------->Tasks
+------------>Tasks(CRM)
 --->1.Created createLeadDto and createaccountDto using class-validator 
 --->2.Updated CRUD operation for leads and opportunity.
 ----3.Explore the opensource crm twenety.com code documentation and tested locally .
