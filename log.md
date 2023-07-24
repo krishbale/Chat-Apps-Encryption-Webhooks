@@ -335,3 +335,12 @@ Sunday , signing in 10:30 am --- 6:30 pm
 --->2.Created the activity diagram using reverse engineering from saleforce.com 
 --->3.created new repository and initialized the crud controllers and datasource configuration
 --->4.for ---> leads,opportunity,contact,accounts and added Tenzing for colloboration on github.
+
+Day -29
+July 24, 2023,
+Monday 
+Signing in 10:30am ----6:30 pm
+------------>Tasks
+--->1.Created createLeadDto and createaccountDto using class-validator 
+--->2.Updated CRUD operation for leads and opportunity.
+----3.Explore the opensource crm twenety.com code documentation and tested locally .
