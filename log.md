@@ -337,6 +337,7 @@ Sunday , signing in 10:30 am --- 6:30 pm
 --->4.for ---> leads,opportunity,contact,accounts and added Tenzing for colloboration on github.
 
 Day -29
+
 July 24, 2023,
 Monday 
 Signing in 10:30am ----6:30 pm
@@ -344,3 +345,18 @@ Signing in 10:30am ----6:30 pm
 --->1.Created createLeadDto and createaccountDto using class-validator 
 --->2.Updated CRUD operation for leads and opportunity.
 ----3.Explore the opensource crm twenety.com code documentation and tested locally .
+
+Status-github.com
+
+
+Day -30
+
+July 25, 2023,
+Wednesday 
+Signing in 10:30am ----6:30 pm
+------------>Tasks(CRM)
+--->1.Merged two branch of crm and update to github 
+--->2.Explore the Saleforce crm functionality and documenation of sales object and model
+----3.Created a basic report on relation of oppotunity, Leads ,Contact , Account 
+
+Status-github.com 
