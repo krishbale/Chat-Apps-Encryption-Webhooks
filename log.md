@@ -360,3 +360,16 @@ Signing in 10:30am ----6:30 pm
 ----3.Created a basic report on relation of oppotunity, Leads ,Contact , Account 
 
 Status-github.com 
+
+Day -31
+
+July 26, 2023,
+Wednesday 
+Signing in 10:30am ----6:30 pm
+------------>Tasks(CRM)
+--->1.Collected functional components from saleforces 
+--->2.Explore the Saleforce crm functionality and gathering the requirements and updating at Scrum projects
+----3.Setting up database and created new branch crm_balkrishna for adding account entity.
+----4.Brainstorming on  Kanban slider  swapping logic  
+
+Status- @ github & lmu scrum projects
