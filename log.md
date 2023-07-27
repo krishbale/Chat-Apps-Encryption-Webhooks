@@ -373,3 +373,16 @@ Signing in 10:30am ----6:30 pm
 ----4.Brainstorming on  Kanban slider  swapping logic  
 
 Status- @ github & lmu scrum projects
+
+Day-32
+
+Thu 27 Jul 2023
+10:00:00 AM - 06:40:00 PM
+
+- created entity for accounts
+- create entity for contacts
+- create entity for contracts and pricebook
+- Learned about recursive , one to one relation
+- created pr request and mergining with main branch
+
+status: github 
