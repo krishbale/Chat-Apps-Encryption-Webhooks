@@ -386,3 +386,17 @@ Thu 27 Jul 2023
 - created pr request and mergining with main branch
 
 status: github 
+
+Day-33
+Date:  28July ,Friday
+Work start time:  10:30 AM
+Work signing off time:  6:30 PM
+
+#Tasks:
+  ➟Created DTO for account and opportunty
+ ➟Created API for account and opportunity
+ ➟ Learned about Containers and as well as workspace role and permission
+ ➟API Testing and database migration for account and opportunity
+
+
+Status : Github 
