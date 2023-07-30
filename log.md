@@ -400,3 +400,17 @@ Work signing off time:  6:30 PM
 
 
 Status : Github 
+
+Day-34
+Date:  30 July ,Sunday
+Work start time:  10:30 AM
+Work signing off time:  6:30 PM
+
+#Tasks:
+  ➟Added validatioon for createaccount and create opporturnity
+ ➟Created DTO, services ,controllers , repository for contract
+ ➟Added createcontract api with incremental contract no.starting from 00000101
+ ➟API testing for contract etc.
+
+
+Status : Github 
