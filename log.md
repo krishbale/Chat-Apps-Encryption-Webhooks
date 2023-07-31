@@ -414,3 +414,19 @@ Work signing off time:  6:30 PM
 
 
 Status : Github 
+
+Day-35
+```ts
+Date:  31 July ,Sunday
+Work start time:  10:30 AM
+Work signing off time:  6:30 PM
+
+#Tasks:
+  ➟Updated validation for accounts,and opportunity including updatedto
+ ➟Created createaccount,update account , delete account and getaccounts api
+ ➟Added createopportunity and update opportunity  api
+ ➟Testing the saleforce delete accounts features and API testing. 
+
+
+Status : Github
+``` 
