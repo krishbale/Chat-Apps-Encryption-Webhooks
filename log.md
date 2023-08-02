@@ -17,6 +17,7 @@ Task
 10.Validation using DTO ,
 11.ORM ,
 12.Typescript
+```
 ```ts
 Day-2
 Wednesday 21 June 2023 11:30AM :6:50PM
@@ -29,7 +30,8 @@ Created protected routes after authentication which can be accessed using bearer
 Blockers:
 Installation and initialization of postgresql server in local machine.
 Status 
-Github  
+Github
+```
 ```ts
 Day-3
 Thursday 22 June 2023  11:30 A.M  : 21:00PM
@@ -42,7 +44,7 @@ SSL version  error while sending  otp mail to users
  using nodemailer,
 ……………….
 Status GIthub 
-
+```
 
 ```ts
 Day-4
@@ -61,6 +63,7 @@ Completed Task:
 Blockers ---- SOcket IO ----Couldnot able to complete Private chats..
 ###############
 Status Github.....
+```
 ```ts
 Day-5
 Sunday 25 June 2023  10:30am : 6:30 PM 
@@ -73,6 +76,7 @@ Completed Task :
 5.Refactoring and formatting code ....
 
 Status Github
+```
 ```ts
 Day -6
 
@@ -86,6 +90,7 @@ Monday 26 June 2023 10;30 am : 6:30 pm
 blockers.. unable to connect two users with two id using two browsers
 
 status .. github
+```
 ```ts
 Day -7 
 
@@ -98,6 +103,7 @@ and library such as   socketio-stream and file-upload.
 3.Also uses the postman to upload the file and which is eventually saved in public folder in backend which tools like multer.
 
 Status ...Github
+```
 ```ts
 Day -8
 
@@ -110,7 +116,7 @@ Day -8
  Status:
  Github.....
 
-
+```
 ```ts
 Day -9 
 
@@ -120,7 +126,7 @@ Task:
 3.Tested webhooks throught github and discord and created new template code for new projects
 4.Study and research on aws and azure for implementing webhooks.
 status ...github
-
+```
 ```ts
 Day -10
 Sunday July 2 2023 10:15 am to 6:15pm
@@ -134,6 +140,7 @@ Task:-
 Blockers....
 #Integration of AWS or Azure.
 Status ......Github
+```
 ```ts
 Day -11 
 
@@ -150,6 +157,7 @@ Blockers....
 #solving encryption for old messages.
 
 Status:github....
+```
 ```ts
 day -12
 Tuesday July 4 2023 10:15 to 6:15pm
@@ -162,6 +170,7 @@ for encrypting columns using AES algorithms
 Blockers....invalid initial vectore error during decryption process.
 
 Status .Github
+```
 ```ts
 day -13
 
@@ -174,6 +183,7 @@ Task;
 3.Created custome function api for old unencrypted message  and encrypted message ..
 
 ..Status github
+```
 ```ts
 day-14
 
@@ -182,6 +192,7 @@ Task:-
 1.Explored deeply on pgcrypto extensions and documentation on encryptions availble on psql.
 2.Created tested and analyzes  limitations on  sql queries to encrypte and decrypt postgresql column data using different algorithms availble on pgcrypto 
 3.Research on  json encryption and went through the concept of  end to end encryptions ,
+```
 ```ts
 day -15
 
@@ -195,6 +206,7 @@ Task :-
 Blockers > Unable to use node package on the react application while doing RSA for frontend.
 
 Status:GIthub ..........
+```
 ```ts
 
 day -16 
@@ -208,6 +220,7 @@ Task:-
 Blockers. React or frontend system do not incorporate easily during implemtnation working on it.
 
 Status ..... GITHUB.
+```
   ```ts
 Day -17
 
@@ -221,7 +234,7 @@ Task:-
  BLockers=> protofbuffers implementation on react didnot go easy again.
 
  status ...local 
-
+```
 ```ts
 Day -18 2
 
@@ -232,7 +245,7 @@ Task:-
 3.Review the workspaces and user authorization code .
 
 status local...                     
-
+```
 ```ts
 Day -19
 
@@ -245,7 +258,7 @@ Using postman and lancemup website web devtools.
 3.created project using  kanban template
 4.notification api
 5.activity log
-
+```
 ```ts
 Day -20
 Thurstday July-13-2023 Signing 10:30 am : signing off 6:30pm
@@ -255,7 +268,7 @@ Task:-
 3.Created Query and Mutations &  connected to postgres sql using nestjs and graphql
  
  status :github. local
-
+```
 ```ts
  Day-21 
 
@@ -265,7 +278,8 @@ Task:-
  2.Tested graphql api in grapql playground
  3.went through vendure io custome pluggins builder docs
  4.Created custom graphql api from custome pluggin.
- Status :Local 
+ Status :Local
+```
 ```ts
  Day -22 
  Sunday July 16 2023 Signing in 10:30 am :signing off 6:30 pm 
@@ -275,6 +289,7 @@ Task:-
 4.Run some  mutations and query from playground learned about authorization through 
 
 status :Github ......
+```
 ```ts
 Day - 23
 
@@ -286,6 +301,7 @@ Monday July 17 2023 signin 10:00 am : signing off 6:00pm
 Blockers.:Unable to use private propery from userservices while extending userservices from vendure for user validation .
 
 Status . Github .......
+```
 ```ts
 Day -24
 
@@ -298,6 +314,7 @@ Task==>
 ==>5.merge the repo with mergebranch and requested pull request for mergebranch .
 
 Status . Github.....
+```
 ```ts
 Day -25
 
@@ -307,7 +324,8 @@ Task==>
 ===>2.Went throught multi-vendure code bases merge yesterday.
 ===>3.Get insight on  the CRM model and structure as provided by Tarakanta sir.
 
-Status .postman 
+Status .postman
+```
 ```ts
 Day-26 
 
@@ -318,6 +336,7 @@ Task--->
 ------>2.Draw simple entity for lead in ER Diagram,
 ------>3.Discussion about requirement of CRM implementation. 
 ......>Status @Saleforce.com & @Lucid Chart.
+```
 ```ts
 Day-27
 
@@ -329,6 +348,7 @@ Friday , Signing in 10:30am ------> 6:30pm
 ---------->3.Colloborate together to create ER diagram based on Sales FOrce CRM.
 -------------Status---------------------------------
 -------------@.LUCID CHARTS---------------------------
+```
 ```ts
 Day-28
 July 23 2023,
@@ -338,6 +358,7 @@ Sunday , signing in 10:30 am --- 6:30 pm
 --->2.Created the activity diagram using reverse engineering from saleforce.com 
 --->3.created new repository and initialized the crud controllers and datasource configuration
 --->4.for ---> leads,opportunity,contact,accounts and added Tenzing for colloboration on github.
+```
 ```ts
 Day -29
 
@@ -350,7 +371,7 @@ Signing in 10:30am ----6:30 pm
 ----3.Explore the opensource crm twenety.com code documentation and tested locally .
 
 Status-github.com
-
+```
 ```ts
 Day -30
 
@@ -363,7 +384,7 @@ Signing in 10:30am ----6:30 pm
 ----3.Created a basic report on relation of oppotunity, Leads ,Contact , Account 
 
 Status-github.com 
-
+```
 Day -31
 ```ts
 July 26, 2023,
@@ -376,7 +397,7 @@ Signing in 10:30am ----6:30 pm
 ----4.Brainstorming on  Kanban slider  swapping logic  
 
 Status- @ github & lmu scrum projects
-
+```
 Day-32
 ```ts
 Thu 27 Jul 2023
@@ -388,7 +409,8 @@ Thu 27 Jul 2023
 - Learned about recursive , one to one relation
 - created pr request and mergining with main branch
 
-status: github 
+status: github
+```
 ```ts
 Day-33
 Date:  28July ,Friday
@@ -402,7 +424,8 @@ Work signing off time:  6:30 PM
  ➟API Testing and database migration for account and opportunity
 
 
-Status : Github 
+Status : Github
+```
 ```ts
 Day-34
 Date:  30 July ,Sunday
@@ -418,7 +441,7 @@ Work signing off time:  6:30 PM
 
 Status : Github
 
-
+```
 Day-35
 ```ts
 Date:  31 July ,Sunday
@@ -449,3 +472,4 @@ Work signing off time:  6:30 PM
 
 
 Status : Github 
+```
