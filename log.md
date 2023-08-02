@@ -1,3 +1,4 @@
+
 # nestjs--backend-intern Task Log
 Day 1 -
 Day of backend intern
@@ -413,7 +414,8 @@ Work signing off time:  6:30 PM
  ➟API testing for contract etc.
 
 
-Status : Github 
+Status : Github
+
 
 Day-35
 ```ts
@@ -429,4 +431,19 @@ Work signing off time:  6:30 PM
 
 
 Status : Github
-``` 
+```
+Day-36
+```ts
+Date:  2 August ,Wednesday
+Work start time:  10:30 AM
+Work signing off time:  6:30 PM
+
+#Tasks:
+  ➟Created getallaccounts ,getaccountbyid
+ ➟Created getopportunity, getopportunitybyid
+ ➟Added transferownership for account and opportunity
+ ➟Added sendmail  new owner after owneeship transfer
+ ->Api testing for multiple users and owners .  
+
+
+Status : Github 
