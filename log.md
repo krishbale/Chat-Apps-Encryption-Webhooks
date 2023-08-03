@@ -473,3 +473,20 @@ Work signing off time:  6:30 PM
 
 Status : Github 
 ```
+```ts
+Date:  3 August ,Thurstday
+Work start time:  10:30 AM
+Work signing off time:  6:30 PM
+
+#Tasks:
+  ➟Create dto entity, repositories,service for cases
+ ➟Created dto entity repositories service for quote 
+ ➟created createcase getallcases and getcasebyid
+ ➟Created createquote getallquote and getquotebyid
+ ->Updated createopportunity if quote_id is given
+->Updated transfer ownership for account which includes actives cases and all cases
+->Updated transfer ownership for opportunity which includes quotes_id status  
+
+
+Status : Github 
+```
