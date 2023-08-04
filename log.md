@@ -493,5 +493,24 @@ Work signing off time:  6:30 PM
 
 
 
+Status : Github
+
+```ts
+day 38
+Date:  4 August ,Friday
+Work start time:  10:00  AM
+Work signing off time:  6:00 PM
+
+#Tasks:
+
+ ➟created update delete api for case and quote 
+ ➟Created getall ,getbyid,update,and delete api for contracts
+->Updated deleteaccount which also delete contacts
+->Review of code written by Tenzing and pawan sir.
+->Api testing on create update get and delete contact .
+  
+
+
+
 Status : Github 
 ```
