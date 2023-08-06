@@ -518,8 +518,8 @@ Status : Github
 ```ts
 day 39
 Date:  6 August ,Sunday
-Work start time:  10:30  AM
-Work signing off time:  6:30 PM
+Work start time:  10:00  AM
+Work signing off time:  6:00 PM
 
 #Tasks:
 
@@ -527,11 +527,11 @@ Work signing off time:  6:30 PM
  ➟Created getall ,getbyid,update,and delete api for order
 ->Updated deleteaccount which also delete order  
 ->Fixes contract,quote and opportunity endpoint parameters
-->Api testing for account ,opportunity , contact , quotes, cases contract and order
+->Tested api for account ,opportunity , contact , quotes, cases contract and order
   
 
 
 
-Status : Github 
+Status : Github & Postman
 ```
 
