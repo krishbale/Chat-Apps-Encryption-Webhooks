@@ -514,3 +514,24 @@ Work signing off time:  6:00 PM
 
 Status : Github 
 ```
+
+```ts
+day 39
+Date:  6 August ,Sunday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+#Tasks:
+
+ ➟Created entity dto service and controllers for order 
+ ➟Created getall ,getbyid,update,and delete api for order
+->Updated deleteaccount which also delete order  
+->Fixes contract,quote and opportunity endpoint parameters
+->Api testing for account ,opportunity , contact , quotes, cases contract and order
+  
+
+
+
+Status : Github 
+```
+
