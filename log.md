@@ -534,4 +534,22 @@ Work signing off time:  6:00 PM
 
 Status : Github & Postman
 ```
+Day -40
+```ts
+day 39
+Date:  7 August ,Monday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
 
+#Tasks:
+
+ ➟updated to   the cloud database url
+ ➟Updated database query for   account, opportunity, contract
+->Updated api endpoint for contract and orders  
+->Tested api from cloud and check for validation error and fixing internal server errors
+  
+
+
+
+Status : Github & Postman
+```
