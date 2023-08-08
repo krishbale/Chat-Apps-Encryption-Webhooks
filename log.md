@@ -553,3 +553,22 @@ Work signing off time:  6:30 PM
 
 Status : Github & Postman
 ```
+Day -41
+```ts
+
+Date:  8 August ,Tuesday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+#Tasks:
+
+ ➟updated case service 
+ ➟Updated order service
+->created another branch to update nest package and dependeny and commited  
+->Research on deployment and provided setting up vm for deployment.
+  
+
+
+
+Status : Github & Postman & Learning server VM
+```
