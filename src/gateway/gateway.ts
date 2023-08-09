@@ -44,7 +44,6 @@ export class MyGateway
     private jwtService: JwtService,
     private chatService: ChatService,
     private readonly httpService: HttpService,
-    private webhookService :WebHookService
   ) {
     load('./src/gateway/chat.proto', (err, root) => {
       if (err) throw err;
@@ -206,7 +205,8 @@ export class MyGateway
     );
     console.log(response);
     this.server.emit('azurebot', response);
+    
 
-      await this.webhookService.handleChatbot(message);
+      // await this.webhookService.handleChatbot(message);
   }
 }

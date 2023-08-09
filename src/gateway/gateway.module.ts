@@ -7,7 +7,6 @@ import { ChatModule } from 'src/chat/chat.module';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Chat } from 'src/chat/entity/chat.entity';
-import { RoomModule } from 'src/room/room.module';
 
 @Module({
   imports: [
@@ -19,6 +18,7 @@ import { RoomModule } from 'src/room/room.module';
     UserModule,
     ChatModule,
     HttpModule,
+    
   ],
   providers: [MyGateway],
   controllers: [],
