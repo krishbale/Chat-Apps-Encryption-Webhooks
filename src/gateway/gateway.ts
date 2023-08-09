@@ -22,6 +22,7 @@ import { DataSource } from 'typeorm';
 import { Chat } from 'src/chat/entity/chat.entity';
 import { Room } from 'src/room/entities/room.entity';
 import { load } from 'protobufjs';
+import { WebHookService } from 'src/webhooks/webhooks.service';
 
 @WebSocketGateway({
   cors: {
@@ -43,6 +44,7 @@ export class MyGateway
     private jwtService: JwtService,
     private chatService: ChatService,
     private readonly httpService: HttpService,
+    private webhookService :WebHookService
   ) {
     load('./src/gateway/chat.proto', (err, root) => {
       if (err) throw err;
@@ -202,9 +204,9 @@ export class MyGateway
         message,
       },
     );
-    // console.log(response);
-    // this.server.emit('azurebot', response);
+    console.log(response);
+    this.server.emit('azurebot', response);
 
-    //   await this.webhookservice.handleChatbot(message);
+      await this.webhookService.handleChatbot(message);
   }
 }
