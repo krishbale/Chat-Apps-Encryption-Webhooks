@@ -592,3 +592,23 @@ Work signing off time:  6:00 PM
 
 Status : Github & Postman 
 ```
+Day -43
+```ts
+
+Date:  10 August ,Thurstday
+Work start time:  10:00  AM
+Work signing off time:  6:00 PM
+
+#Tasks:
+
+->Created dto for socket in crm for account opportunity .etc
+->Updated socket emittor and listner for account , opportunity etc.
+->Same for contract quotes case and 
+->Api testing for account using socket 
+->learning about remote access on postgres server from anywhere .
+  
+
+
+
+Status : Github & Postman 
+```
