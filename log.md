@@ -572,3 +572,23 @@ Work signing off time:  6:30 PM
 
 Status : Github & Postman & Learning server VM
 ```
+Day -42
+```ts
+
+Date:  9 August ,Wednesday
+Work start time:  10:00  AM
+Work signing off time:  6:00 PM
+
+#Tasks:
+
+->Review of api and validation
+->Updated roles and permisiion for accounts opportunities etc.
+->Tested crm user api for multiple user using different roles and permission
+->Created dto and socketgateway for createaccount service ......
+->Research about nginx and reverse proxy .
+  
+
+
+
+Status : Github & Postman 
+```
