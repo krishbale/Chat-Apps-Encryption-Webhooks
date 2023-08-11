@@ -612,3 +612,18 @@ Work signing off time:  6:00 PM
 
 Status : Github & Postman 
 ```
+```ts
+Day -44
+Date:  11 August ,Friday
+Work start time:  10:00  AM
+Work signing off time:  6:00 PM
+
+----->Tasks:
+
+->Debugging bug in create async api from dto
+->Updated crm repository to datasource
+->Created socket api for createtask update task delete task and getall?getbyid
+->Api testing for crm containers using socket
+
+Status : Github & Postman 
+```
