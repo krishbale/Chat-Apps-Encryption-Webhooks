@@ -627,3 +627,19 @@ Work signing off time:  6:00 PM
 
 Status : Github & Postman 
 ```
+
+```ts
+Day -45
+Date:  12 August ,Sunday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+
+->Created multiple users for testing crm api using sockets with required permission 
+->fixed dto and serivces for opportunity quotes and fixed some errors and bugs.
+->Updated ws exception function to emit validation error in postman.
+->completed api testing for accounts opportunity contract quotes cases and orders.
+
+Status : Github & Postman 
+```
