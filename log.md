@@ -642,4 +642,18 @@ Work signing off time:  6:30 PM
 ->completed api testing for accounts opportunity contract quotes cases and orders.
 
 Status : Github & Postman 
+``````ts
+Day -46
+Date:  13 August ,Sunday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+
+->Research on Min Io 
+->Created Upload file to minio function and tested in min playground
+->Pulled request from niraj sir and updated and tested for delete,createdcustomurl,getpresigned url,copy file, get metadata etc.
+->Added the uploadtominiocode everywhere in the codebase.
+
+Status : Github 
 ```
