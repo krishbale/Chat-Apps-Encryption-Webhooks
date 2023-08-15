@@ -657,3 +657,18 @@ Work signing off time:  6:30 PM
 
 Status : Github 
 ```
+```ts
+Day -47
+Date:  14 August ,Tuesday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+
+->Removed s3 function and updated minio  for uploadfile,copyfile etc,
+->Tested the api related to mioio 
+->report the bug during testing and updated validation 
+->Merged the code and also tested provided by niraj sir .
+
+Status : Github 
+```
