@@ -672,3 +672,18 @@ Work signing off time:  6:30 PM
 
 Status : Github 
 ```
+```ts
+Day -48
+Date:  16 August ,Tuesday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+
+->Tested the cdn cloudfront for public and private bucket 
+->Tested the large file data for minio 
+->Research on code base uglify minify 
+
+
+Status : Postman and minio dev server. 
+```
