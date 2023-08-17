@@ -687,3 +687,18 @@ Work signing off time:  6:30 PM
 
 Status : Postman and minio dev server. 
 ```
+```ts
+Day -49
+Date:  17 August ,Thurstday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+
+->Debugging cdn link for image not showing in frontend 
+->Updated the and minio access policy and merge the branch with niraj sir
+->Tested minio from postman and review the code for multi part 
+
+
+Status : Postman and minio dev server. 
+```
