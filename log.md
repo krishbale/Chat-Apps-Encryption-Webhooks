@@ -701,4 +701,17 @@ Work signing off time:  6:30 PM
 
 
 Status : Postman and minio dev server. 
+``````ts
+Day -50
+Date:  17 August ,Friday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+
+->Tried and research on multipart upload on minio from diffrent resource  . 
+->Get insights about how multi part upload works on frontend from abik sir .
+->tried to present the research on code obstification 
+-Blockers : Multi part implementation 
+ 
 ```
