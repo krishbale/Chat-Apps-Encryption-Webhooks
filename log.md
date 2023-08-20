@@ -723,8 +723,8 @@ Work signing off time:  6:30 PM
 ----->Tasks:
 
 ->Research on multi part upload in minio   . 
-->Created frontend and backend  to implement minio failed 
+->Created and failed frontend react  and backend   to implement minio file uploading for large data.  
 
--Blockers : Multi part implementation not avaible in minio.
+-Blockers : Multi part implementation not avaible in minio javascript 
  
 ```
