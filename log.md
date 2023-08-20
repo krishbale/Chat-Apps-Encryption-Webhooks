@@ -721,10 +721,9 @@ Work start time:  10:30  AM
 Work signing off time:  6:30 PM
 
 ----->Tasks:
-
-->Research on multi part upload in minio   . 
-->Created and failed frontend react  and backend   to implement minio file uploading for large data.  
-
+->Further  Research on multi part upload in minio   .
+-> Discussion on whether to  channine the  progress bar while uploading in frontend
+->Worked on react template to understand further to implennt multipart file upload
 -Blockers : Multi part implementation not avaible in minio javascript 
  
 ```
