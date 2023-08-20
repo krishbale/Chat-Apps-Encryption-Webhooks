@@ -714,4 +714,17 @@ Work signing off time:  6:30 PM
 ->tried to present the research on code obstification 
 -Blockers : Multi part implementation 
  
+```ts
+Day -51
+Date:  20 August ,Sunday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+
+->Research on multi part upload in minio   . 
+->Created frontend and backend  to implement minio failed 
+
+-Blockers : Multi part implementation not avaible in minio.
+ 
 ```
