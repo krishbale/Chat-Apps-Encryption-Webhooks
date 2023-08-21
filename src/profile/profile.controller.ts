@@ -5,7 +5,6 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
-  Res,
   UploadedFile,
   UseGuards,
   UseInterceptors,

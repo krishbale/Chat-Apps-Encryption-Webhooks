@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  postgres_db:
+    container_name: db_container
+    image: postgres:latest
+    restart: always
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lmudb
+    
+
+  api:
+    container_name: api
+    build: .
+    ports:
+      - 4200:4200
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres_db
+   
+  api2:
+    container_name: api2
+    build: .
+    ports:
+      - 4300:4300
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres_db
+  
