@@ -727,3 +727,33 @@ Work signing off time:  6:30 PM
 -Blockers : Multi part implementation not avaible in minio javascript 
  
 ```
+```ts
+Day -52
+Date:  21 August ,Monday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+->Research on load balancer using nginx reverse proxys.
+->Debugging create File/directory on drive 
+->Detected some bugs on  loops and working on to ideas to solve nested file and directory path problems
+->Tested throught postman and setting up frontend portals environment for testing on download file/folders problems
+
+-status :github, postman  
+ 
+```
+```ts
+Day -53
+Date:  22 August ,Tuesday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+
+----->Tasks:
+->Research on cloud virtualization and their types
+->Resolving issue on nested folder path and  upload file and folder in drive
+->Detected some bugs on  minio url and partially fixed .
+->Debugging and working on  download folder with folder name instead of folder id 
+->Blockers: Null error while downloading file .
+-status :github,   
+ 
+```
