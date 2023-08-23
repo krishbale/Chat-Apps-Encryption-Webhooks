@@ -757,3 +757,16 @@ Work signing off time:  6:30 PM
 -status :github,   
  
 ```
+```ts
+Day -54
+Date:  23 August ,wednesday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+----->Tasks:
+->Debugging and fixing the the issue of renaming file and folder while downlaoding  
+->Debuggin and testing the minio url and direcorty path
+->tried and failed to resolve the relative path while downloading folders .
+-> Blockers relative path errors 
+-status :github,   
+ 
+```
