@@ -770,3 +770,16 @@ Work signing off time:  6:30 PM
 -status :github,   
  
 ```
+```ts
+Day -55
+Date:  24 August ,Thurstday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+----->Tasks:
+->Discussion and debugging and fixing filepath error.
+->Fixed the renaming file and folder after merging code
+->Tested and Scanning the UI for minio file upload
+-> Detected and fixed the downlaod error after while moving file and folder in drive.
+-status :github,
+ 
+```
