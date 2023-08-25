@@ -783,3 +783,17 @@ Work signing off time:  6:30 PM
 -status :github,
  
 ```
+```ts
+Day -56
+Date:  25 August ,Friday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+----->Tasks:
+->Updated function to move file 
+->Addded funciton to move folders
+->Updated functionality to add same file name with updated name i.e. filename.jpg filename1.jpg filename3.jpg
+-> Detected and fixed the downlaod error after while moving file and folder in drive.
+->Discurssion about problemt to Unable to download the folder after moving file and folder recursively 
+-status :github,
+ 
+```
