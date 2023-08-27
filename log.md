@@ -797,3 +797,15 @@ Work signing off time:  6:30 PM
 -status :github,
  
 ```
+```ts
+Day -57
+Date:  27 August ,Sunday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+----->Tasks:
+->Debugging on move file and folders function in minio 
+->Fixed the Bug from  backend for sharing folder with id and to display the nested subfolder recursively. 
+->Working on  file path  while moving file and downloading the file .
+-status :github,
+ 
+```
