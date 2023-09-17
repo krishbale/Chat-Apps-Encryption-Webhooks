@@ -809,3 +809,15 @@ Work signing off time:  6:30 PM
 -status :github,
  
 ```
+```ts
+Day -60
+Date:  17 August ,Sunday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+----->Tasks:
+->Review and test code base on minio drive_upload_test 
+->Debuggin on secure file of folders securitycode error issue. 
+->
+-status :github,local
+ 
+```
