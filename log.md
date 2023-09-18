@@ -821,3 +821,16 @@ Work signing off time:  6:30 PM
 -status :github,local
  
 ```
+```ts
+Day -61
+Date:  18 August ,Monday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+----->Tasks:
+->Fixed the bug on minmax code for security code  dto . 
+->Revise  of tailor template figma , research on tailor requirement
+->Review of tailor project codebases and ui for better understaning .
+=
+-status :github,local
+ 
+```
