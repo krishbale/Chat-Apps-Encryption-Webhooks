@@ -834,3 +834,16 @@ Work signing off time:  6:30 PM
 -status :github,local
  
 ```
+```ts
+Day -62
+Date:  19 August ,Tuesday
+Work start time:  10:30  AM
+Work signing off time:  6:30 PM
+----->Tasks:
+->Created a new repository tailor_template 
+->Requirement Gathering and Analysis of Tailor management System
+->Added basic authentcation system .
+->Entity and Workflow diagram for tailor template .
+-status :github,local
+ 
+```
