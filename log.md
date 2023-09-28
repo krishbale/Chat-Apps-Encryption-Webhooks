@@ -845,5 +845,17 @@ Work signing off time:  6:30 PM
 ->Added basic authentcation system .
 ->Entity and Workflow diagram for tailor template .
 -status :github,local
- 
+
 ```
+```
+```ts
+Day -63
+Date:2023/09/28
+Time:10:30am - 6:12:25
+------>Tasks:
+-Created New Authentication system for tailor 
+-> Added endpoint auth and users
+-> Discussion on tailor requirements.
+-status :github,local 
+```
+
