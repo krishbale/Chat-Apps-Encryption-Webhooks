@@ -858,4 +858,22 @@ Time:10:30am - 6:12:25
 -> Discussion on tailor requirements.
 -status :github,local 
 ```
-
+```
+```ts
+Day -64
+Date:2023/09/29
+Time:10:30am - 17:45:09
+------>Tasks:
+->Added module from lmu_portal_backend
+1.workspace
+2.roles
+3.socket
+4.notifications
+5.projects
+6.tailor
+->Debuggig errors and prunning unused modules.
+->Detected the socket docs erros and failed to fixed it.
+->Blockers:->
+-1. comminucatation problems  due to bad internet .
+-status :github,local 
+```
