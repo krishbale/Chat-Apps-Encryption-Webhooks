@@ -876,4 +876,18 @@ Time:10:30am - 17:45:09
 ->Blockers:->
 -1. comminucatation problems  due to bad internet .
 -status :github,local 
+```ts
+Day -65
+Date:2023/10/04
+Time:10:23:34am - 18:13:09
+------>Tasks:
+Completed task as assigned on Tailor Up
+->completed user module
+-> completed auth module
+->completed otp module
+->Research and discussion on orderly website tailor design architecture
+->Noted and added keypoint in figma file based on the reasearch .
+->Blockers:->
+-1. Bad internent , bad weathers 
+-status :github,local 
 ```
