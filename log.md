@@ -891,3 +891,16 @@ Completed task as assigned on Tailor Up
 -1. Bad internent , bad weathers 
 -status :github,local 
 ```
+```ts
+Day -66
+Date:2023/10/05
+Time:10:23:34am - 18:13:09
+------>Tasks:
+->
+->Developing and Understainding the tailor workflow with tarakant sir 
+->Designing database and ER digram for tailor with sanjay
+-> Debugging on authorization 
+-> fixed the templates
+->
+-status :github,figma, Lucid Charts, 
+```
