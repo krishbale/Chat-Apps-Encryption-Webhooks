@@ -904,3 +904,22 @@ Time:10:23:34am - 18:13:09
 ->
 -status :github,figma, Lucid Charts, 
 ```
+
+```ts
+Day -67
+Date:2023/10/06
+Time:10:10:34 - 18:13:09
+------>Tasks:
+->Tailor-Up
+-> Fixed errrors occured on previous day . 
+->Research on Designing Entity 
+->Created Entity and Relationship among entities .
+-> Customer Entity
+->Order Entity
+-> Fabric Entity
+-> Garment Entity 
+->vendor and order_item entity
+-> Research on billing and pricing informatiions. 
+-> Requested to review ..
+-status :github,local, 
+```
