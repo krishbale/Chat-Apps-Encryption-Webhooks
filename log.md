@@ -912,14 +912,15 @@ Time:10:10:34 - 18:13:09
 ------>Tasks:
 ->Tailor-Up
 -> Fixed errrors occured on previous day . 
+-> API Testing on auth module and review the code previous code bases on different branch .
 ->Research on Designing Entity 
 ->Created Entity and Relationship among entities .
--> Customer Entity
-->Order Entity
--> Fabric Entity
--> Garment Entity 
-->vendor and order_item entity
--> Research on billing and pricing informatiions. 
--> Requested to review ..
+  -Customer Entity
+  -Order Entity
+  -Fabric Entity
+  -Garment Entity 
+  -vendor and order_item entity
+->Research on billing and pricing informations. 
+->Requested to review ..
 -status :github,local, 
 ```
