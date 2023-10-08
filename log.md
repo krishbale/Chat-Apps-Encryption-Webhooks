@@ -908,7 +908,7 @@ Time:10:23:34am - 18:13:09
 ```ts
 Day -67
 Date:2023/10/06
-Time:10:10:34 - 18:13:09
+Time:10:10:34 - 18:02:09
 ------>Tasks:
 ->Tailor-Up
 -> Fixed errrors occured on previous day . 
@@ -922,5 +922,28 @@ Time:10:10:34 - 18:13:09
   -vendor and order_item entity
 ->Research on billing and pricing informations. 
 ->Requested to review ..
+-status :github,local, 
+```
+
+
+```ts
+Day -68
+Date:2023/10/08
+Time:10:17:34 - 18:10:09
+-Tasks:
+-Tailor-Up
+-Created New Entity Tailor Shop and its modules
+-Added API endpoint for tailor_shop
+  -Create Tailor_shop
+  -Get All Tailor_shop
+-Fixed Bugs and  name convention error on various entity 
+-Implmented API endpoint for Tailor Customer .
+  -Create Customer 
+  -Update Customer
+  -Get all and get Customer by id
+  -Delete customer by id
+ -API Testing of for Tailor-shop and Tailor Customer
+-Debugging and fixed null constrants error on createcustomer feature.
+
 -status :github,local, 
 ```
