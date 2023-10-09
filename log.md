@@ -927,9 +927,8 @@ Time:10:10:34 - 18:02:09
 
 
 ```ts
-Day -68
 Date:2023/10/08
-Time:10:17:34 - 18:10:09
+Time:10:17:34 - 18:20:09
 -Tasks:
 -Tailor-Up
 -Created New Entity Tailor Shop and its modules
@@ -944,6 +943,22 @@ Time:10:17:34 - 18:10:09
   -Delete customer by id
  -API Testing of for Tailor-shop and Tailor Customer
 -Debugging and fixed null constrants error on createcustomer feature.
+
+-status :github,local, 
+```
+
+```ts
+Date:2023/10/09
+Time:10:17:34 - 18:20:09
+-Tasks:
+-Created new Entity Measurement
+-Created API for:-
+-tailor garment category
+-tailor garment subcategory
+-tailor fabric
+-tailor measurement 
+-tailor orderitem
+-tailor order 
 
 -status :github,local, 
 ```
