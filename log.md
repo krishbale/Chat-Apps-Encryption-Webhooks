@@ -927,6 +927,7 @@ Time:10:10:34 - 18:02:09
 
 
 ```ts
+day 68
 Date:2023/10/08
 Time:10:17:34 - 18:20:09
 -Tasks:
@@ -948,6 +949,7 @@ Time:10:17:34 - 18:20:09
 ```
 
 ```ts
+day 69
 Date:2023/10/09
 Time:10:17:34 - 18:20:09
 -Tasks:
@@ -961,4 +963,19 @@ Time:10:17:34 - 18:20:09
 -tailor order 
 
 -status :github,local, 
+```
+```ts
+day 70
+Date:2023/10/10
+Time:10:25:34 - 18:25:09
+-Tasks:
+-Updated entity for vendor
+-Research and analysis on task Entity.
+-Created task Entity 
+-Created Controller and Serivice for vendor entity 
+-Created controller and service for Task Entity .
+
+
+-Status :github,local, 
+### Need Testing...
 ```
