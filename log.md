@@ -979,3 +979,17 @@ Time:10:25:34 - 18:25:09
 -Status :github,local, 
 ### Need Testing...
 ```
+```ts
+day 71
+Date:2023/10/11
+Time:10:15:34 - 18:15:09
+-Tasks:
+-Added partial task endpoint orderitem
+-Research and analysis on Bill Entity.
+-Created Bill Entity 
+-Created Controller and Serivice for Bill entity 
+-Tested api for category subcategory fabric etc.
+
+
+-Status :github,local, 
+```
