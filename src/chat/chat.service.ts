@@ -3,8 +3,6 @@ import { Chat } from './entity/chat.entity';
 import { MyEncryptionTransformer } from 'src/encryption/custom-transfer';
 import { MyEncryptionTransformerConfig } from 'src/encryption/encryption.config';
 import { DataSource } from 'typeorm';
-import { Message, load } from 'protobufjs';
-import { string } from 'joi';
 
 @Injectable()
 export class ChatService {
