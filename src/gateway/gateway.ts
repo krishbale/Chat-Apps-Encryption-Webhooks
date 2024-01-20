@@ -21,7 +21,6 @@ import { HttpService } from '@nestjs/axios';
 import { DataSource } from 'typeorm';
 import { Chat } from 'src/chat/entity/chat.entity';
 import { Room } from 'src/room/entities/room.entity';
-import { load } from 'protobufjs';
 import { WebHookService } from 'src/webhooks/webhooks.service';
 
 @WebSocketGateway({
@@ -45,10 +44,7 @@ export class MyGateway
     private chatService: ChatService,
     private readonly httpService: HttpService,
   ) {
-    load('./src/gateway/chat.proto', (err, root) => {
-      if (err) throw err;
-      this.protobuffer = root.lookupType('userpackage.Chat');
-    });
+   
   }
   afterInit(server: Server) {
     console.log(server, 'Init');
