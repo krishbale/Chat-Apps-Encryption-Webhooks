@@ -7,7 +7,7 @@ import { OtpModule } from 'src/otp/otp.module';
 import { OtpService } from 'src/otp/otp.service';
 import { JwtModule } from '@nestjs/jwt';
 import { JWTSECRET } from 'src/constant';
-import { JwtStrategy } from 'src/auth/strategy/jwt.strategy';
+// import { JwtStrategy } from 'src/auth/strategy/jwt.strategy';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { JwtStrategy } from 'src/auth/strategy/jwt.strategy';
   ],
 
   controllers: [UserController],
-  providers: [UserService, OtpService, JwtStrategy],
+  providers: [UserService, OtpService, ],
   exports: [UserService],
 })
 export class UserModule {}
