@@ -10,11 +10,7 @@ export class ChatService {
   private MessageList: any;
 
   constructor(private readonly dataSource: DataSource) {
-    load('./src/chat/chat.proto', (err, root) => {
-      if (err) throw err;
-      this.Message = root.lookupType('userpackage.Message');
-      this.MessageList = root.lookupType('userpackage.MessageList');
-    });
+ 
   }
   async createchat(@Body() message: any) {
     const chat = new Chat();
