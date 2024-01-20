@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "typeorm": "./node_modules/.bin/typeorm",
-    "build": "npm i passport-jwt &&  nest build",
+    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "node dist/main ",
     "start:dev": "nest start --watch",
@@ -28,8 +28,6 @@
     "migration:run:win": "yarn typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.8.17",
-    "@grpc/proto-loader": "^0.7.7",
     "@nestjs/axios": "^3.0.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.0.0",
@@ -50,22 +48,14 @@
     "class-validator": "^0.14.0",
     "compression": "^1.7.4",
     "crypto-js": "^4.1.1",
-    "google-protobuf": "^3.21.2",
-    "joi": "^17.9.2",
-    "minio": "^7.1.1",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.4.0",
-    "nestjs-minio": "^2.5.0",
     "node-rsa": "^1.1.1",
     "nodemailer": "^6.9.3",
     "pg": "^8.11.1",
-    "protobufjs": "^7.2.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
-    "socket.io-stream": "^0.9.1",
-    "socketio-file-upload": "^0.7.3",
-    "typeorm": "^0.3.16",
-    "typeorm-encrypted-column": "^0.0.4"
+    "typeorm": "^0.3.16"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
