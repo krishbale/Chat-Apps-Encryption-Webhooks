@@ -21,7 +21,8 @@ async function bootstrap() {
   };
 
   app.enableCors(corsOptions);
+  const defaultPort = 3000;
 
-  await app.listen(3000);
+  await app.listen(defaultPort);
 }
 bootstrap();
