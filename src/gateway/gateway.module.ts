@@ -18,7 +18,6 @@ import { Chat } from 'src/chat/entity/chat.entity';
     UserModule,
     ChatModule,
     HttpModule,
-    
   ],
   providers: [MyGateway],
   controllers: [],

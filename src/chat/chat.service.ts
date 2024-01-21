@@ -9,9 +9,7 @@ export class ChatService {
   private Message: any;
   private MessageList: any;
 
-  constructor(private readonly dataSource: DataSource) {
- 
-  }
+  constructor(private readonly dataSource: DataSource) {}
   async createchat(@Body() message: any) {
     const chat = new Chat();
     chat.message = message.message;

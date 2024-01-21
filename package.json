@@ -9,7 +9,7 @@
     "typeorm": "./node_modules/.bin/typeorm",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "export PORT=3000 && node ./dist/main.js",
+    "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -28,6 +28,7 @@
     "migration:run:win": "yarn typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts"
   },
   "dependencies": {
+    "@nestjs/cli": "^10.0.0", 
     "@nestjs/axios": "^3.0.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.0.0",
@@ -59,7 +60,7 @@
     "passport-jwt": "^4.0.1"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.0.0",
+   
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/bcrypt": "^5.0.0",

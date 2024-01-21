@@ -43,9 +43,7 @@ export class MyGateway
     private jwtService: JwtService,
     private chatService: ChatService,
     private readonly httpService: HttpService,
-  ) {
-   
-  }
+  ) {}
   afterInit(server: Server) {
     console.log(server, 'Init');
   }
@@ -113,7 +111,7 @@ export class MyGateway
       const response = await this.dataSource.getRepository(Chat).save(chat);
 
       const jsonData = JSON.stringify(response);
-    const base64Data = Buffer.from(jsonData).toString('base64');
+      const base64Data = Buffer.from(jsonData).toString('base64');
 
       const payload = this.protobuffer.create(response);
       const buffer = this.protobuffer.encode(payload).finish();
@@ -201,8 +199,7 @@ export class MyGateway
     );
     console.log(response);
     this.server.emit('azurebot', response);
-    
 
-      // await this.webhookService.handleChatbot(message);
+    // await this.webhookService.handleChatbot(message);
   }
 }

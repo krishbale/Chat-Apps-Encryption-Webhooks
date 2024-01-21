@@ -20,7 +20,7 @@ import { JWTSECRET } from 'src/constant';
   ],
 
   controllers: [UserController],
-  providers: [UserService, OtpService, ],
+  providers: [UserService, OtpService],
   exports: [UserService],
 })
 export class UserModule {}
