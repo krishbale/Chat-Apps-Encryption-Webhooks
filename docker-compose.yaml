@@ -15,23 +15,23 @@ services:
       POSTGRES_DB: lmudb
     
 
-  # api:
-  #   container_name: api
-  #   build: .
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - postgres_db
+  api:
+    container_name: api
+    build: .
+    ports:
+      - 4200:4200
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres_db
    
-  # api2:
-  #   container_name: api2
-  #   build: .
-  #   ports:
-  #     - 4300:4300
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - postgres_db
+  api2:
+    container_name: api2
+    build: .
+    ports:
+      - 4300:4300
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres_db
   
