@@ -13,25 +13,33 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: lmudb
-    
 
-  api:
-    container_name: api
-    build: .
+  backend:
+    container_name: ${PROJECT}_backend
+    image: krishbale/chatapp:v1
     ports:
-      - 4200:4200
-    volumes:
-      - .:/app
+      - '${APP_PORT}:${APP_PORT}'
     depends_on:
       - postgres_db
-   
-  api2:
-    container_name: api2
-    build: .
-    ports:
-      - 4300:4300
-    volumes:
-      - .:/app
-    depends_on:
-      - postgres_db
-  
+    env_file:
+      - ./.env
+
+  # api:
+  #   container_name: api
+  #   build: .
+  #   ports:
+  #     - 4200:4200
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - postgres_db
+
+  # api2:
+  #   container_name: api2
+  #   build: .
+  #   ports:
+  #     - 4300:4300
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - postgres_db
