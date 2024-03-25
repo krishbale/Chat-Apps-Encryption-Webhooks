@@ -33,7 +33,7 @@ export class OtpService {
       .findOne({ where: { user_id, code, otp_type } });
     if (!otp) throw new BadRequestException('Invalid OTP.');
     const expiryTime = 1000 * 60 * 15; // 15 minutes
-    console.log(otp.created_at.getTime() + expiryTime > Date.now());
+    // console.log(otp.created_at.getTime() + expiryTime > Date.now());
     if (otp.created_at.getTime() + expiryTime > Date.now()) {
       throw new BadRequestException('OTP expired.');
     }

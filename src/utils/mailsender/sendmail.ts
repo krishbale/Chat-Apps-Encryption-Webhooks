@@ -19,5 +19,5 @@ export async function sendmail(to: string, text: string) {
     html: `<b>Hello Please verify your email ${text}</b>`,
   });
 
-  console.log('Message sent: %s', info.messageId);
+  // console.log('Message sent: %s', info.messageId);
 }

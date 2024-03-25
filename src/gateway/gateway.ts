@@ -45,7 +45,6 @@ export class MyGateway
     private readonly httpService: HttpService,
   ) {}
   afterInit(server: Server) {
-    console.log(server, 'Init');
   }
   async handleConnection(socket: Socket) {
     try {
@@ -76,10 +75,10 @@ export class MyGateway
           {
             userid: user.id.toString(),
           };
-        console.log(`Client with user  id: ${user.id.toString()} connected `);
+        // console.log(`Client with user  id: ${user.id.toString()} connected `);
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
   async handleDisconnect(socket: Socket) {
@@ -117,7 +116,7 @@ export class MyGateway
       const buffer = this.protobuffer.encode(payload).finish();
       const encode = this.protobuffer.decode(buffer);
       // console.log(buffer);
-      console.log(encode);
+      // console.log(encode);
       this.server.to(message.to).emit('gets-chat', {
         sender: response.sender_id,
         message: response.message,
@@ -148,7 +147,7 @@ export class MyGateway
   onJoin(@MessageBody() MessageDto: MessageDto) {
     this.server.socketsJoin(MessageDto.to);
     {
-      console.log('new room joined ', MessageDto.to);
+      // console.log('new room joined ', MessageDto.to);
 
       this.server.to(MessageDto.to).emit('notify', {
         message: 'new user joined',
@@ -197,7 +196,7 @@ export class MyGateway
         message,
       },
     );
-    console.log(response);
+    // console.log(response);
     this.server.emit('azurebot', response);
 
     // await this.webhookService.handleChatbot(message);

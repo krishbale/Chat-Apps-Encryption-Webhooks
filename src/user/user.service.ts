@@ -49,7 +49,7 @@ export class UserService {
       user.email = loginuserDto.email.toLowerCase();
       user.password = hashedpassword;
       await queryRunner.manager.getRepository(User).save(user);
-      console.log(user);
+      // console.log(user);
       const code = generateOTP(6);
 
       await queryRunner.manager

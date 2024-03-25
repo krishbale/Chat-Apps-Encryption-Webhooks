@@ -49,17 +49,16 @@ export class ChatService {
     await queryRunner.startTransaction();
     try {
       const chats = await queryRunner.manager.getRepository(Chat).find({});
-      let li = 0;
+      // let li = 0;
       for (const chat of chats) {
         const newEncryptedMessage = encryptionTransformer.to(chat.message);
         chat.message = newEncryptedMessage;
         await queryRunner.manager.getRepository(Chat).save(chat);
-        console.log`Encrypitn meeage:${li++}`;
       }
       await queryRunner.commitTransaction();
     } catch (err) {
       queryRunner.rollbackTransaction();
-      console.log(err);
+      // console.log(err);
     } finally {
       await queryRunner.release();
     }
@@ -80,12 +79,12 @@ export class ChatService {
         const newEncryptedMessage = encryptionTransformer.from(chat.message);
         chat.message = newEncryptedMessage;
         await queryRunner.manager.getRepository(Chat).save(chat);
-        console.log`Decrypitn meeage:${li++}`;
+        // console.log`Decrypitn meeage:${li++}`;
       }
       await queryRunner.commitTransaction();
     } catch (err) {
       queryRunner.rollbackTransaction();
-      console.log(err);
+      // console.log(err);
     } finally {
       await queryRunner.release();
     }

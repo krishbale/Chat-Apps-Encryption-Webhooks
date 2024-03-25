@@ -1,27 +1,33 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-// import { ValidationPipe } from '@nestjs/common';
 import * as compression from 'compression';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.use(compression());
+  try {
+    const app = await NestFactory.create(AppModule);
 
-  // app.useGlobalPipes(
-  //   new ValidationPipe({
-  //     whitelist: true,
-  //   }),
-  // );
+    // Middleware setup
+    app.use(compression());
 
-  const corsOptions: CorsOptions = {
-    origin: '*',
-    methods: '*',
-    credentials: true,
-    optionsSuccessStatus: 204,
-  };
+    // Global pipes setup
+    // app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
-  app.enableCors(corsOptions);
-  const defaultPort = 3000;
+    // CORS setup
+    // const corsOptions: CorsOptions = {
+    //   origin: '*',
+    //   methods: '*',
+    //   credentials: true,
+    //   optionsSuccessStatus: 204,
+    // };
+    // app.enableCors(corsOptions);
 
-  await app.listen(defaultPort, '0.0.0.0');}
+    const defaultPort = 4200;
+    await app.listen(defaultPort);
+    console.log('Server is running on http://0.0.0.0:' + defaultPort);
+  } catch (err) {
+    console.error('Error starting Nest application:', err);
+  }
+}
+
 bootstrap();

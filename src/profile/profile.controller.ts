@@ -67,7 +67,7 @@ export class ProfileController {
   @UseGuards(JWTAUTHGuard)
   @Get('/chat/:id')
   async getchat(@Param('id', new ParseUUIDPipe()) id: any) {
-    console.log(id);
+    // console.log(id);
     return this.chatserice.findchatbyid(id);
   }
 
