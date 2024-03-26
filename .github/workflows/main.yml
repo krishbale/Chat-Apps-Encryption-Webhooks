@@ -1,51 +1,43 @@
 name: ChatApp Backend Main
+
 on:
-    workflow_dispatch:
-    push:
-        branches:
-            - staging
+  workflow_dispatch:
+  push:
+    branches:
+      - staging
+
 jobs:
-    test:
-        runs-on:
-            - ubuntu-latest
-        steps:
-            - name: Get Code
-              uses: actions/checkout@v4
-            - name: Install Dependencies
-              run: npm i
-            - name: Run Test
-              run: echo "running test"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm i
+      - name: Run Test
+        run: echo "running test"
 
-    dockerhub:
-        runs-on:
-          - ubuntu-latest
-        steps:
-            - name: Get Code
-              uses: actions/checkout@v4
-            - name: Login to Docker Hub
-              run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-            - name: Build Docker image
-              run: docker build -t krishbale/chatapp:v1 .
-            - name: Push Docker image to Docker Hub
-              run: docker push krishbale/chatapp:v1
-    
-
-    deployment:
-        needs: dockerhub 
-        runs-on:
-            - self-hosted
-            - hrms-staging
-        steps:
-            - name: Login to Docker Hub
+  dockerhub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: Build Docker image
+        run: docker build -t krishbale/chatapp:v1 .
+      - name: Push Docker image to Docker Hub
+        run: docker push krishbale/chatapp:v1
 
+  deployment:
+    needs: dockerhub 
+    runs-on:
+      - self-hosted
+      - hrms-staging
+    steps:
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: Pull Docker image using Docker Compose
         run: docker-compose pull
-
       - name: Run Docker containers using Docker Compose
         run: docker-compose up -d
-        
-        
-
-
-        
