@@ -43,4 +43,5 @@ jobs:
         working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
         run: docker compose pull 
       - name: Run Docker containers using Docker Compose
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
         run: docker compose up -d
