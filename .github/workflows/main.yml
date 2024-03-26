@@ -31,7 +31,10 @@ jobs:
 
   deployment:
     needs: dockerhub 
-    runs-on: self-hosted
+    runs-on: 
+      - self-hosted
+      - chat-app
+
     steps:
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
