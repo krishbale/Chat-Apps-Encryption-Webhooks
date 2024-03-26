@@ -37,8 +37,10 @@ jobs:
 
     steps:
       - name: Login to Docker Hub
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: Pull Docker image using Docker Compose
-        run: docker compose pull
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
+        run: docker compose pull 
       - name: Run Docker containers using Docker Compose
         run: docker compose up -d
