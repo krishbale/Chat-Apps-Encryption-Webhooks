@@ -16,7 +16,7 @@ services:
 
   backend:
     container_name: ${PROJECT}_backend
-    image: krishbale/chatapp:v1
+    image: ghcr.io/krishbale/chat-apps-encryption-webhooks:chatapp
     ports:
       - '${APP_PORT}:${APP_PORT}'
     depends_on:

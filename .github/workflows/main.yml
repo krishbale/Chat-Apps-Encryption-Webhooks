@@ -32,21 +32,21 @@ jobs:
 
 
 
-  # deployment:
-  #   needs: dockerhub 
-  #   runs-on: 
-  #     - self-hosted
-  #     - chat-app
+  deployment:
+    needs: dockerhub 
+    runs-on: 
+      - self-hosted
+      - chat-app
 
-  #   steps:
-  #     - n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ame: Login to Docker Hub
-  #       working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
-  #       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-  #     # - name: Pull Docker image using Docker Compose
-  #       # working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
-  #       # run: docker compose pull 
-  #     - name: Run Docker containers using Docker Compose
-  #       working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
-  #       run: docker compose up -d
-  #     - name : Clean Up Space
-  #       run: docker system prune -af  
+    steps:
+      - name: Login to GHCR
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
+        run: echo "${{ secrets.PTA }}" |   docker login ghcr.io -u krishbale --password-stdin
+      - name: Pull Docker image using Docker Compose
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
+        run:  docker compose pull backend
+      - name: Run Docker containers using Docker Compose
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
+        run:  docker compose up  -d backend --build --force-recreatedocker 
+      - name : Clean Up Space
+        run: docker system prune -af  
