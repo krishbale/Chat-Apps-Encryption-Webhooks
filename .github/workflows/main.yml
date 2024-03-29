@@ -36,7 +36,7 @@ jobs:
     needs: dockerhub 
     runs-on: 
       - self-hosted
-      - chat-app
+      - chat
 
     steps:
       - name: Login to GHCR
