@@ -28,7 +28,8 @@ jobs:
       - name: Build Docker image
         run: docker build -t ghcr.io/krishbale/chat-apps-encryption-webhooks:chatapp .
       - name: Push Docker image to Docker Hub
-        run: ghcr.io/krishbale/chat-apps-encryption-webhooks:chatapp
+        run: docker push ghcr.io/krishbale/chat-apps-encryption-webhooks:chatapp
+
 
 
   # deployment:
