@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - master
       - staging
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
         run: echo "running test"
 
   dockerhub-main:
-    if: github.ref == 'refs/heads/main'  # Trigger only on main branch
+    if: github.ref == 'refs/heads/master'  # Trigger only on master branch
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -25,11 +25,11 @@ jobs:
       - name: Login to Docker Hub
         run: echo "${{ secrets.PTA }}" | docker login ghcr.io -u krishbale --password-stdin
 
-      - name: Build Docker image for main
-        run: docker build -t ghcr.io/krishbale/chat-apps-encryption-webhooks:main .
+      - name: Build Docker image for master
+        run: docker build -t ghcr.io/krishbale/chat-apps-encryption-webhooks:master .
 
-      - name: Push Docker image for main to Docker Hub
-        run: docker push ghcr.io/krishbale/chat-apps-encryption-webhooks:main
+      - name: Push Docker image for master to Docker Hub
+        run: docker push ghcr.io/krishbale/chat-apps-encryption-webhooks:master
 
   dockerhub-staging:
     if: github.ref == 'refs/heads/staging'  # Trigger only on staging branch
@@ -48,7 +48,7 @@ jobs:
 
   deployment-main:
     needs: dockerhub-main
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     runs-on: main-runner
     steps:
       - name: Login to GHCR
