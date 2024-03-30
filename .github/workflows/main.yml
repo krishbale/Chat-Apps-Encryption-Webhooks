@@ -47,6 +47,7 @@ jobs:
         run:  docker compose pull backend
       - name: Run Docker containers using Docker Compose
         working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
-        run:  docker compose up  -d backend --build --force-recreatedocker 
+        run:  docker compose up  -d backend --build --force-recreate
+ 
       - name : Clean Up Space
         run: docker system prune -af  
