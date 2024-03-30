@@ -17,6 +17,7 @@ jobs:
         run: echo "running test"
 
   dockerhub-main:
+    if: github.ref == 'refs/heads/main'  # Trigger only on main branch
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -31,6 +32,7 @@ jobs:
         run: docker push ghcr.io/krishbale/chat-apps-encryption-webhooks:main
 
   dockerhub-staging:
+    if: github.ref == 'refs/heads/staging'  # Trigger only on staging branch
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -77,4 +79,3 @@ jobs:
         run: docker compose up -d backend --build --force-recreate
       - name: Clean Up Space
         run: docker system prune -af
-
