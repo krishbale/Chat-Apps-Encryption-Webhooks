@@ -1,9 +1,8 @@
-name: ChatApp Backend Main
-
 on:
   workflow_dispatch:
   push:
     branches:
+      - main
       - staging
 
 jobs:
@@ -17,37 +16,65 @@ jobs:
       - name: Run Test
         run: echo "running test"
 
-  dockerhub:
+  dockerhub-main:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
         uses: actions/checkout@v4
       - name: Login to Docker Hub
-        run: echo "${{ secrets.PTA }}" |   docker login ghcr.io -u krishbale --password-stdin
+        run: echo "${{ secrets.PTA }}" | docker login ghcr.io -u krishbale --password-stdin
 
-      - name: Build Docker image
-        run: docker build -t ghcr.io/krishbale/chat-apps-encryption-webhooks:chatapp .
-      - name: Push Docker image to Docker Hub
-        run: docker push ghcr.io/krishbale/chat-apps-encryption-webhooks:chatapp
+      - name: Build Docker image for main
+        run: docker build -t ghcr.io/krishbale/chat-apps-encryption-webhooks:main .
 
+      - name: Push Docker image for main to Docker Hub
+        run: docker push ghcr.io/krishbale/chat-apps-encryption-webhooks:main
 
+  dockerhub-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.PTA }}" | docker login ghcr.io -u krishbale --password-stdin
 
-  deployment:
-    needs: dockerhub 
-    runs-on: 
-      - self-hosted
-      - chat
+      - name: Build Docker image for staging
+        run: docker build -t ghcr.io/krishbale/chat-apps-encryption-webhooks:staging .
 
+      - name: Push Docker image for staging to Docker Hub
+        run: docker push ghcr.io/krishbale/chat-apps-encryption-webhooks:staging
+
+  deployment-main:
+    needs: dockerhub-main
+    if: github.ref == 'refs/heads/main'
+    runs-on: main-runner
     steps:
       - name: Login to GHCR
         working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
-        run: echo "${{ secrets.PTA }}" |   docker login ghcr.io -u krishbale --password-stdin
+        run: echo "${{ secrets.PTA }}" | docker login ghcr.io -u krishbale --password-stdin
       - name: Pull Docker image using Docker Compose
         working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
-        run:  docker compose pull backend
+        run: docker compose pull backend
       - name: Run Docker containers using Docker Compose
         working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
-        run:  docker compose up  -d backend --build --force-recreate
- 
-      - name : Clean Up Space
-        run: docker system prune -af  
+        run: docker compose up -d backend --build --force-recreate
+      - name: Clean Up Space
+        run: docker system prune -af
+
+  deployment-staging:
+    needs: dockerhub-staging
+    if: github.ref == 'refs/heads/staging'
+    runs-on: staging-runner
+    steps:
+      - name: Login to GHCR
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
+        run: echo "${{ secrets.PTA }}" | docker login ghcr.io -u krishbale --password-stdin
+      - name: Pull Docker image using Docker Compose
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
+        run: docker compose pull backend
+      - name: Run Docker containers using Docker Compose
+        working-directory: /home/ubuntu/Documents/balkrishnatest/Chat-Apps-Encryption-Webhooks
+        run: docker compose up -d backend --build --force-recreate
+      - name: Clean Up Space
+        run: docker system prune -af
+
